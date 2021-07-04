@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/site.css?v=3" />
+    <link rel="stylesheet" href="~/css/reset.css" />
+    <link rel="stylesheet" href="~/css/layout.css?v=3" />
+</head>
+<body>
+    <div class="layout-block">
+        <div class="top">
+            <div class="right-top-part">
+                <div>Home</div>
+            </div>
+            <div class="left-top-part">
+                <div>Menu</div>
+                <div>Log in</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<div class="footer">
+            <div class="rights">©All rights reserved</div>
+            <div class="language">
+                <span data-lang="Ru">Русский</span>
+                <span data-lang="En">English</span>
+            </div>
+            <div class="developed-by">Developed by TMS .Net07</div>
+            <div class="contacts">
+                <div class="social-media">
+                    <img class="footer-icon telegram tmsgroup" src="../image/icon/telegram-color-48px.svg">
+                    <img class="footer-icon youtube teacher" src="../image/icon/youtube-color-48px.svg">
+                </div>
+            </div>
+        </div>*@
+</body>
+</html>

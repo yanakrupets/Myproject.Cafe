@@ -1,0 +1,39 @@
+﻿.main-pic {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 800px;
+}
+
+.conteiner {
+    font-family: Sakura;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 70px;
+}
+
+@font-face {
+    font-family: Sakura;
+    src: url(/font/4264.ttf);
+}
+
+.background-img {
+    min-width: 100%;
+    height: 500px;
+    margin-top: -3px;
+}
+
+.carousel-block {
+    width: 100%;
+    height: 700px;
+    background: white;
+    position: absolute;
+}
+
+.magnolia {
+    z-index: 1;
+}
