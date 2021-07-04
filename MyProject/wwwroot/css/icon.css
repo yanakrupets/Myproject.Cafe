@@ -1,1 +1,37 @@
-﻿
+﻿.icon {
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+}
+
+    .icon::before {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        content: ' ';
+    }
+
+.home::before {
+    background: url('/images/icons/baseline_home.png') center/cover;
+}
+
+.home:hover::before {
+    background: url('/images/icons/twotone_home.png') center/cover;
+}
+
+.menu::before {
+    background: url('/images/icons/outline_menu.png') center/cover;
+}
+
+.menu:hover::before {
+    background: url('/images/icons/twotone_menu.png') center/cover;
+}
+
+
+.log-in::before {
+    background: url('/images/icons/login1.png') center/cover;
+}
+
+.log-in:hover::before {
+    background: url('/images/icons/login2.png') center/cover;
+}
