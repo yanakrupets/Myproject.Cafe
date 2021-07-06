@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyProject.Models;
+using MyProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MyProject.Controllers
@@ -12,10 +15,12 @@ namespace MyProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IPathHelper _pathHelper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IPathHelper pathHelper)
         {
             _logger = logger;
+            _pathHelper = pathHelper;
         }
 
         public IActionResult Index()
@@ -28,10 +33,21 @@ namespace MyProject.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult ImageForCarousel()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var carouselFolderPath = _pathHelper.GetPathToCarouselFolder();
+            var filesPath = Directory.GetFiles(carouselFolderPath);
+            var img = filesPath
+                .Where(filePath => Path.GetExtension(filePath) == ".jpg")
+                .ToList();
+
+            for(var i = 0; i < img.Count; i++)
+            {
+                var startIndex = img[i].IndexOf("\\images\\carousel\\");
+                img[i] = img[i].Remove(0,startIndex).Replace("\\", "/");
+            }
+
+            return Json(img);
         }
     }
 }

@@ -59,6 +59,11 @@ namespace MyProject
                   diContainer.GetService<IUserRepository>(),
                   diContainer.GetService<IHttpContextAccessor>()
               ));
+
+            services.AddScoped<IPathHelper>(diConteiner =>
+            new PathHelper(
+                  diConteiner.GetService<IWebHostEnvironment>()
+                ));
         }
 
         private void RegistrationRepositories(IServiceCollection services)
