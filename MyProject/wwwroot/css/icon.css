@@ -35,3 +35,19 @@
 .log-in:hover::before {
     background: url('/images/icons/login2.png') center/cover;
 }
+
+.log-out::before {
+    background: url('/images/icons/logout1.png') center/cover;
+}
+
+.log-out:hover::before {
+    background: url('/images/icons/logout2.png') center/cover;
+}
+
+.profile::before {
+    background: url('/images/icons/profile1.png') center/cover;
+}
+
+.profile:hover::before {
+    background: url('/images/icons/profile2.png') center/cover;
+}
