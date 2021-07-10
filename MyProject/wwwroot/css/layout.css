@@ -22,6 +22,12 @@
     cursor: pointer;
 }
 
+.menu-block-dropdown {
+    background: white;
+    width: 800px;
+    height: 0px;
+}
+
 
 /*login/registration*/
 .nice-popup {
@@ -102,6 +108,30 @@
     color: white;
 }
 /*login/registration*/
+
+/*dropdown*/
+.language {
+    width: 80px;
+    background: white;
+    margin-left: 240px;
+}
+.lang {
+    margin: 5px 10px 5px 3px;
+    cursor: pointer;
+}
+    .lang:hover {
+        color: #cecece;
+    }
+
+.lang-content {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: black;
+    margin-top: 8px;
+    font-size: 20px;
+}
+/*dropdown*/
 
 .footer {
     background: #2d2524;

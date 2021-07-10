@@ -7,5 +7,6 @@ namespace MyProject.Service
     {
         User GetCurrent();
         ClaimsPrincipal GetPrincipal(User user);
+        void LangChange(Language lang);
     }
 }

@@ -3,6 +3,7 @@ using MyProject.EfStuff.Model;
 using MyProject.EfStuff.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -44,6 +45,23 @@ namespace MyProject.Service
             var claimsIdentity = new ClaimsIdentity(claims, Startup.AuthMethod);
             var principal = new ClaimsPrincipal(claimsIdentity);
             return principal;
+        }
+
+        public void LangChange(Language lang)
+        {
+            switch (lang)
+            {
+                case EfStuff.Model.Language.en:
+                    CultureInfo.DefaultThreadCurrentUICulture
+                        = new CultureInfo("en-US");
+                    break;
+                case EfStuff.Model.Language.ru:
+                    CultureInfo.DefaultThreadCurrentUICulture
+                        = new CultureInfo("ru-RU");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

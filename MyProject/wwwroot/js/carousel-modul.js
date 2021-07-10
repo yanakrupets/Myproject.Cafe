@@ -7,10 +7,10 @@
     var selector;
     var dotselector;
     var currentImageIndex = 0;
-    var height = 270;
-    var width = 500;
     var imgIndex = 0;
     var prevImgIndex = 0;
+    var width = 1000;
+    var height = 670;
 
     var animationFunctions = [];
 

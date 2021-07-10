@@ -1,11 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using MyProject.Localization
+@using MyProject.Service
+@using MyProject.EfStuff.Model
+
+@inject IUserService userService
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="~/css/site.css?v=8" />
+    <link rel="stylesheet" href="~/css/site.css?v=10" />
     <link rel="stylesheet" href="~/css/reset.css" />
-    <link rel="stylesheet" href="~/css/layout.css?v=5" />
-    <link rel="stylesheet" href="~/css/icon.css?v=2" />
+    <link rel="stylesheet" href="~/css/layout.css?v=7" />
+    <link rel="stylesheet" href="~/css/icon.css?v=3" />
     <link rel="stylesheet" href="~/css/link.css?v=1" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/layout.js"></script>
@@ -19,26 +24,49 @@
         <div class="top">
             <div class="right-top-part">
                 <a href="../Home/Index" class="link">
-                    <div class="icon home">Home</div>
+                    <div class="icon home">@Resource.Layout_Home</div>
                 </a>
                 <a href="../Cafe/Menu" class="link">
-                    <div class="icon menu">Menu</div>
+                    <div class="icon link menu">@Resource.Layout_Menu</div>
                 </a>
+                <div class="lang-dropdown">
+                    <div class="dropdown link">
+                        <div class="icon">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                var user = userService.GetCurrent();
+                                var languageViewModel = new LanguageViewModel()
+                                {
+                                    language = user.Language
+                                };
+                                @Html.Partial("_lang", languageViewModel)
+                            }
+                            else
+                            {
+                                <span>@Resource.lang</span>
+                            }
+                        </div>
+                        <div class="lang-content hide">
+                            <a class="ru lang" value="@Language.ru">Русский</a>
+                            <a class="en lang" value="@Language.en">English</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="left-top-part">
 
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="/User/Profile" class="link">
-                        <div class="icon profile">Profile</div>
+                        <div class="icon profile">@Resource.Layout_Profile</div>
                     </a>
                     <a href="/User/Logout" class="link">
-                        <div class="icon log-out">Sign out</div>
+                        <div class="icon log-out">@Resource.Layout_SignOut</div>
                     </a>
                 }
                 else
                 {
-                    <div class="icon log-in link">Sign in</div>
+                    <div class="icon log-in link">@Resource.Layout_SignIn</div>
                 }
             </div>
         </div>
@@ -49,17 +77,17 @@
                 <div class="login-direction">
                     <form action="/User/Login" method="post" id="login-or-registration" class="loginformstyle">
                         <div>
-                            <input name="@nameof(RegistrationViewModel.Login)" class="input-fields" type="text" placeholder="login" />
+                            <input name="@nameof(RegistrationViewModel.Login)" class="input-fields" type="text" placeholder="@Resource.Placeholder_login" />
                         </div>
                         <div>
-                            <input name="@nameof(RegistrationViewModel.Password)" class="input-fields" type="password" placeholder="password" />
+                            <input name="@nameof(RegistrationViewModel.Password)" class="input-fields" type="password" placeholder="@Resource.Placeholder_password" />
                         </div>
                         <div class="login-but">
-                            <input class="pglogbut" type="submit" value="Log in" />
+                            <input class="pglogbut" type="submit" value="@Resource.Layout_LogIn" />
                         </div>
-                        <div class="or">or</div>
+                        <div class="or">@Resource.Layout_or</div>
                         <div class="registration-but">
-                            <input class="pglogbut" type="submit" value="Registration" />
+                            <input class="pglogbut" type="submit" value="@Resource.Layout_Registration" />
                         </div>
                     </form>
                 </div>

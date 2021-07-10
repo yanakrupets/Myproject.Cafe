@@ -51,3 +51,11 @@
 .profile:hover::before {
     background: url('/images/icons/profile2.png') center/cover;
 }
+
+.dropdown::before {
+    background: url('/images/icons/language.png') center/cover;
+}
+
+.dropdown:hover::before {
+    background: url('/images/icons/language2.png') center/cover;
+}

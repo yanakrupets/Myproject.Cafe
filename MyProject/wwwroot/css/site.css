@@ -16,6 +16,10 @@
     font-size: 70px;
 }
 
+.header-block{
+    margin-bottom: -3px;
+}
+
 @font-face {
     font-family: Sakura;
     src: url(/font/4264.ttf);
@@ -45,7 +49,6 @@
 .menu-block,
 .special-offer {
     display: flex;
-    margin-top: -3px;
     height: 600px;
     background: #967a55;
 }
@@ -101,3 +104,68 @@
     justify-content: center;
 }
 
+
+
+
+
+.animate-block {
+    display: flex;
+}
+
+    .animate-block .buttons {
+        position: absolute;
+        width: 100%;
+        height: 670px;
+        display: flex;
+    }
+
+    .animate-block .choose {
+        flex: 2;
+        cursor: pointer;
+    }
+
+        .animate-block .choose:hover {
+            background: red;
+            opacity: 0.3;
+        }
+
+    .animate-block .next-btn,
+    .animate-block .prev-btn {
+        /*background: #ccc;*/
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        flex: 1;
+    }
+
+        .animate-block .next-btn:hover,
+        .animate-block .prev-btn:hover {
+            background: #000;
+            opacity: 0.3;
+        }
+
+.carousel-smile {
+    background: rgb(33, 33, 33);
+    width: 100%;
+    height: 670px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    border: none;
+}
+
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+.dot-animate-block-style {
+    text-align: center
+}

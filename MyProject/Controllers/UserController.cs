@@ -9,6 +9,7 @@ using MyProject.Models;
 using MyProject.Service;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,6 +61,8 @@ namespace MyProject.Controllers
                 return Redirect(model.ReturnUrl);
             }
 
+            _userService.LangChange(user.Language);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -104,6 +107,23 @@ namespace MyProject.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult UpdateLang(string lang)
+        {
+            var user = _userService.GetCurrent();
+            if(user == null)
+            {
+                _userService.LangChange((Language)Enum.Parse(typeof(Language), lang));
+            }
+            else
+            {
+                user.Language = (Language)Enum.Parse(typeof(Language), lang);
+                _userService.LangChange(user.Language);
+                _userRepository.Save(user);
+            }
+
+            return Json(true);
         }
     }
 }

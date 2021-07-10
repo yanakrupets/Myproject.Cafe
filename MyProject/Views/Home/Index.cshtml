@@ -1,4 +1,5 @@
-﻿@{
+﻿@using MyProject.Localization
+@{
     ViewData["Title"] = "Home Page";
 }
 @section Style
@@ -7,12 +8,11 @@
 }
 @section Script
 {
-    <script src="~/js/carousel.js"></script>
-    <script src="~/js/carousel-modul.js"></script>
+    @*<script src="~/js/carousel.js"></script>
+    <script src="~/js/carousel-modul.js"></script>*@
 }
 
 <div class="main-block">
-
     <div class="header-block">
         <div class="conteiner">
             <div class="magnolia">Magnolia</div>
@@ -22,15 +22,15 @@
     <div class="menu-block">
         <div class="menu-content">
             <div class="menu-title-block">
-                <h1 class="menu-title">MAGNOLIA MENU</h1>
+                <h1 class="menu-title">@Resource.Index_Menu</h1>
                 <p class="menu-text">
-                    Gkalls annsn flid gof, asalakd fodn okrs ada
+                    @Resource.Index_text_1
                     <br>
-                    Goosf kfor asdonrp propr jank
+                    @Resource.Index_text_2
                 </p>
                 <a href="/Cafe/Menu" class="link">
                     <div class="wrapper">
-                        <input class="pglogbut wrapper block" type="submit" value="DISCOVER MENU" />
+                        <input class="pglogbut wrapper block" type="submit" value="@Resource.Index_discover_menu" />
                     </div>
                 </a>
             </div>
@@ -41,15 +41,15 @@
         <div class="special-offer-img"></div>
         <div class="special-offer-content">
             <div class="special-offer-title-block">
-                <h1 class="special-offer-title">SPECIAL OFFER</h1>
+                <h1 class="special-offer-title">@Resource.Index_Special_offer</h1>
                 <p class="special-offer-text">
-                    Gkalls annsn flid gof, asalakd fodn okrs ada
+                    @Resource.Index_text_1
                     <br>
-                    Goosf kfor asdonrp propr jank
+                    @Resource.Index_text_2
                 </p>
                 <a href="/Cafe/SpecialOffer" class="link">
                     <div class="wrapper">
-                        <input class="pglogbut wrapper block" type="submit" value="DISCOVER SPECIAL OFFER" />
+                        <input class="pglogbut wrapper block" type="submit" value="@Resource.Index_discover_SO" />
                     </div>
                 </a>
             </div>
