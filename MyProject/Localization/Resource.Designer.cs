@@ -70,7 +70,7 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
+        ///   Ищет локализованную строку, похожую на DISCOVER SPECIAL OFFER.
         /// </summary>
         public static string Index_discover_SO {
             get {
@@ -84,6 +84,15 @@ namespace MyProject.Localization {
         public static string Index_Menu {
             get {
                 return ResourceManager.GetString("Index_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на OUR CAFE.
+        /// </summary>
+        public static string Index_Our_cafe {
+            get {
+                return ResourceManager.GetString("Index-Our-cafe", resourceCulture);
             }
         }
         

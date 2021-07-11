@@ -16,8 +16,8 @@
 	})
 
 	//вынести в функцию
-	$('.lang-content').find('.ru').click(function () {
-		var language = "ru";
+	$('.lang-content').find('.en').click(function () {
+		var language = "en";
 		var url = "/User/UpdateLang?lang=" + language;
 		$.get(url)
 			.done(function () {
@@ -28,8 +28,8 @@
 			})
 	})
 
-	$('.lang-content').find('.en').click(function () {
-		var language = "en";
+	$('.lang-content').find('.ru').click(function () {
+		var language = "ru";
 		var url = "/User/UpdateLang?lang=" + language;
 		$.get(url)
 			.done(function () {

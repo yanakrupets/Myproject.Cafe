@@ -42,7 +42,6 @@
             runAnimation(true);
         });
     }
-
     function prevBtnClick() {
         animationFunctions.push(function () {
             runAnimation(false);
@@ -175,10 +174,8 @@
         $(`${dotselector}`).addClass('dot-animate-block-style');
         for (var i = 1; i <= images.length; i++) {
             var dot = $('<span>');
-            //var dot = document.getElementById("span");
             dot.addClass('dot');
             dot.attr('id', i);
-            //dot.id = i;
             $(`${dotselector}`).append(dot);
         }
         $('.dot[id=1]').addClass('active');

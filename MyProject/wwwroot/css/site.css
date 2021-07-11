@@ -38,8 +38,7 @@
 
 .carousel-block {
     width: 100%;
-    height: 700px;
-    background: white;
+    background: #967a55;
 }
 
 .magnolia {
@@ -104,18 +103,23 @@
     justify-content: center;
 }
 
-
-
-
+/*carousel*/
+.carousel-title {
+    font-family: Hairline;
+    font-size: 80px;
+    padding: 30px 0px;
+    display: flex;
+    justify-content: center;
+    border-top: 5px solid #212121;
+}
+}
 
 .animate-block {
-    display: flex;
+    height: 800px;
 }
 
     .animate-block .buttons {
         position: absolute;
-        width: 100%;
-        height: 670px;
         display: flex;
     }
 
@@ -131,11 +135,10 @@
 
     .animate-block .next-btn,
     .animate-block .prev-btn {
-        /*background: #ccc;*/
         display: flex;
         align-items: center;
         cursor: pointer;
-        flex: 1;
+        flex: 0.5;
     }
 
         .animate-block .next-btn:hover,
@@ -146,8 +149,6 @@
 
 .carousel-smile {
     background: rgb(33, 33, 33);
-    width: 100%;
-    height: 670px;
 }
 
 .dot {
@@ -169,3 +170,9 @@
 .dot-animate-block-style {
     text-align: center
 }
+
+.current-image {
+    display: flex;
+    justify-content: center;
+}
+/*carousel*/

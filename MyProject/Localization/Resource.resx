@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Index-Our-cafe" xml:space="preserve">
+    <value>OUR CAFE</value>
+  </data>
   <data name="Index_discover_menu" xml:space="preserve">
     <value>DISCOVER MENU</value>
   </data>
   <data name="Index_discover_SO" xml:space="preserve">
-    <value />
+    <value>DISCOVER SPECIAL OFFER</value>
   </data>
   <data name="Index_Menu" xml:space="preserve">
     <value>MAGNOLIA MENU</value>

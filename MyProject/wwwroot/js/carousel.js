@@ -6,6 +6,8 @@
                 '.animate-block-dots',
                 answer,
                 {
+                    width: $('.animate-block').width(),
+                    height: $('.animate-block').height(),
                     time: 2000
                 });
         })
