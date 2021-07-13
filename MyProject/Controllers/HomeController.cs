@@ -16,11 +16,14 @@ namespace MyProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IPathHelper _pathHelper;
+        private IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger, IPathHelper pathHelper)
+        public HomeController(ILogger<HomeController> logger, IPathHelper pathHelper, 
+            IUserService userService)
         {
             _logger = logger;
             _pathHelper = pathHelper;
+            _userService = userService;
         }
 
         public IActionResult Index()

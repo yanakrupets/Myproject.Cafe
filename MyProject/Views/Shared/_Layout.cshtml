@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="~/css/carousel.css?v=1" />
     <link rel="stylesheet" href="~/css/reset.css" />
     <link rel="stylesheet" href="~/css/layout.css?v=7" />
-    <link rel="stylesheet" href="~/css/icon.css?v=3" />
-    <link rel="stylesheet" href="~/css/link.css?v=1" />
+    <link rel="stylesheet" href="~/css/icon.css?v=5" />
+    <link rel="stylesheet" href="~/css/link.css?v=2" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/layout.js"></script>
     <script src="~/js/buttonLR.js"></script>
@@ -31,8 +31,8 @@
                     <div class="icon link menu">@Resource.Layout_Menu</div>
                 </a>
                 <div class="lang-dropdown">
-                    <div class="dropdown link">
-                        <div class="icon">
+                    <div class="dropdown  link">
+                        <div class="dropdown-icon icon">
                             @if (User.Identity.IsAuthenticated)
                             {
                                 var user = userService.GetCurrent();
@@ -48,8 +48,8 @@
                             }
                         </div>
                         <div class="lang-content hide">
-                            <a class="ru lang" value="@Language.ru">Русский</a>
-                            <a class="en lang" value="@Language.en">English</a>
+                            <a class="lang" value="@Language.ru">Русский</a>
+                            <a class="lang" value="@Language.en">English</a>
                         </div>
                     </div>
                 </div>

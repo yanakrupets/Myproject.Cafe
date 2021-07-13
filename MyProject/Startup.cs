@@ -111,6 +111,8 @@ namespace MyProject
 
             app.UseAuthorization();
 
+            app.UseMiddleware<LocalizationMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

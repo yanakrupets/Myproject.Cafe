@@ -15,25 +15,29 @@
 		$('.lang-content').addClass('hide');
 	})
 
-	//вынести в функцию
-	$('.lang-content').find('.en').click(function () {
-		var language = "en";
+	//$('.lang-content .lang').click(function () {
+	//	var language = $(this).attr("value");
+	//	var url = "/User/UpdateLang?lang=" + language;
+	//	$.get(url)
+	//		.done(function () {
+	//			location.reload();
+	//		})
+	//		.fail(function () {
+
+	//		})
+	//})
+
+	$('.lang-content .lang').click(function () {
+		var language = $(this).attr("value");
 		var url = "/User/UpdateLang?lang=" + language;
 		$.get(url)
-			.done(function () {
-				location.reload();
-			})
-			.fail(function () {
-
-			})
-	})
-
-	$('.lang-content').find('.ru').click(function () {
-		var language = "ru";
-		var url = "/User/UpdateLang?lang=" + language;
-		$.get(url)
-			.done(function () {
-				location.reload();
+			.done(function (answer) {
+				if (answer) {
+					document.location.reload();
+				} else {
+					document.cookie = 'guestLang=' + language;
+					document.location.reload();
+                }
 			})
 			.fail(function () {
 

@@ -46,22 +46,5 @@ namespace MyProject.Service
             var principal = new ClaimsPrincipal(claimsIdentity);
             return principal;
         }
-
-        public void LangChange(Language lang)
-        {
-            switch (lang)
-            {
-                case EfStuff.Model.Language.en:
-                    CultureInfo.DefaultThreadCurrentUICulture
-                        = new CultureInfo("en-US");
-                    break;
-                case EfStuff.Model.Language.ru:
-                    CultureInfo.DefaultThreadCurrentUICulture
-                        = new CultureInfo("ru-RU");
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }

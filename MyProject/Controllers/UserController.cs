@@ -61,7 +61,7 @@ namespace MyProject.Controllers
                 return Redirect(model.ReturnUrl);
             }
 
-            _userService.LangChange(user.Language);
+            //_userService.LangChange(user.Language);
 
             return RedirectToAction("Index", "Home");
         }
@@ -112,18 +112,14 @@ namespace MyProject.Controllers
         public IActionResult UpdateLang(string lang)
         {
             var user = _userService.GetCurrent();
-            if(user == null)
-            {
-                _userService.LangChange((Language)Enum.Parse(typeof(Language), lang));
-            }
-            else
+            if(user != null)
             {
                 user.Language = (Language)Enum.Parse(typeof(Language), lang);
-                _userService.LangChange(user.Language);
                 _userRepository.Save(user);
+                return Json(true);
             }
 
-            return Json(true);
+            return Json(false);
         }
     }
 }
