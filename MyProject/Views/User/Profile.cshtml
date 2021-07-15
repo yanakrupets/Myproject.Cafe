@@ -3,13 +3,34 @@
 @inject MyProject.Service.IUserService userService
 @section Style
 {
-    <link rel="stylesheet" href="~/css/profile.css?v=3">
+    <link rel="stylesheet" href="~/css/profile.css?v=8">
+}
+
+@section Script
+{
+    <script src="~/js/profile.js"></script>
 }
 
 <div class="profile-block">
     <div class="profile-page">
         <div class="top-block">
-            <img class="avatar" src="">
+            <div>
+                <form action="/User/Profile" method="post" enctype="multipart/form-data" class="avatar-form hide">
+                    <div>
+                        <label class="label">
+                            <div>@Resource.Profile_change_avatar</div>
+                            <input type="file" accept=".jpg, .jpeg, .png" name="@nameof(AvatarViewModel.Avatar)" class="file"/>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="label">
+                            <div>@Resource.Profile_save</div>
+                            <input type="submit" class="file" />
+                        </label>
+                    </div>
+                </form>
+                <img class="avatar" src="@Model.AvatarUrl">
+            </div>
             <div>
                 <div class="user-name">
                     @Model.Name
@@ -18,23 +39,23 @@
                 <a href="../User/Form" class="form link">
                     @Resource.Profile_Form
                 </a>
+                <div class="form-information">
+                    @if (Model.Birthday != new DateTime())
+                    {
+                        <div>
+                            @nameof(Model.Birthday) @Model.Birthday.ToShortDateString()
+                        </div>
+                    }
+                    @if (Model.Email != null)
+                    {
+                        <div>
+                            @nameof(Model.Email) @Model.Email
+                        </div>
+                    }
+                </div>
             </div>
         </div>
         <div class="central-block">
-            <div class="form-information">
-                @if(Model.Birthday != new DateTime())
-                {
-                    <div>
-                        @nameof(Model.Birthday) @Model.Birthday.ToShortDateString();
-                    </div>
-                }
-                @if (Model.Email != null)
-                {
-                    <div>
-                        @nameof(Model.Email) @Model.Email
-                    </div>
-                }
-            </div>
             <form action="/" method="post">
                 <input type="submit" class="review">
             </form>

@@ -27,5 +27,28 @@ namespace MyProject.Service
 
             return path;
         }
+
+        public string GetPathToAvatarFolder()
+        {
+            var webPath = _hostEnvironment.WebRootPath;
+            var path = Path.Combine(webPath, "images", "avatars");
+            if (Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            return path;
+        }
+
+        public string GetPathToAvatarByUser(long id)
+        {
+            var avatarFolderPath = GetPathToAvatarFolder();
+            return Path.Combine(avatarFolderPath, $"{id}.jpg");
+        }
+
+        public string GetAvatarUrlByUser(long id) 
+        {
+            return $"/images/avatars/{id}.jpg";
+        }
     }
 }

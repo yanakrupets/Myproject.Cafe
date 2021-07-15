@@ -241,11 +241,29 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на change avatar.
+        /// </summary>
+        public static string Profile_change_avatar {
+            get {
+                return ResourceManager.GetString("Profile_change_avatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Form.
         /// </summary>
         public static string Profile_Form {
             get {
                 return ResourceManager.GetString("Profile_Form", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на save.
+        /// </summary>
+        public static string Profile_save {
+            get {
+                return ResourceManager.GetString("Profile_save", resourceCulture);
             }
         }
     }

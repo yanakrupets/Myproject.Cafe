@@ -177,7 +177,13 @@
   <data name="Placeholder_password" xml:space="preserve">
     <value>пароль</value>
   </data>
+  <data name="Profile_change_avatar" xml:space="preserve">
+    <value>изменить аватарку</value>
+  </data>
   <data name="Profile_Form" xml:space="preserve">
     <value>Анкета</value>
+  </data>
+  <data name="Profile_save" xml:space="preserve">
+    <value>сохранить</value>
   </data>
 </root>

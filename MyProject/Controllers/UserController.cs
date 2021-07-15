@@ -10,6 +10,7 @@ using MyProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,13 +21,15 @@ namespace MyProject.Controllers
         public IUserRepository _userRepository;
         public IUserService _userService;
         public IMapper _mapper;
+        public IPathHelper _pathHelper;
 
         public UserController(IUserRepository userRepository, IUserService userService,
-            IMapper mapper)
+            IMapper mapper, IPathHelper pathHelper)
         {
             _userRepository = userRepository;
             _userService = userService;
             _mapper = mapper;
+            _pathHelper = pathHelper;
         }
 
         [HttpGet]
@@ -101,6 +104,26 @@ namespace MyProject.Controllers
             var user = _userService.GetCurrent();
             var viewModel = _mapper.Map<ProfileViewModel>(user);
             return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Profile(AvatarViewModel model)
+        {
+            var user = _userService.GetCurrent();
+
+            if (model.Avatar != null)
+            {
+                var path = _pathHelper.GetPathToAvatarByUser(user.Id);
+                using (var fileStream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    await model.Avatar.CopyToAsync(fileStream);
+                }
+                user.AvatarUrl = _pathHelper.GetAvatarUrlByUser(user.Id);
+            }
+            _userRepository.Save(user);
+
+            return RedirectToAction("Profile");
         }
 
         public async Task<IActionResult> Logout()

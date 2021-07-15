@@ -177,7 +177,13 @@
   <data name="Placeholder_password" xml:space="preserve">
     <value>password</value>
   </data>
+  <data name="Profile_change_avatar" xml:space="preserve">
+    <value>change avatar</value>
+  </data>
   <data name="Profile_Form" xml:space="preserve">
     <value>Form</value>
+  </data>
+  <data name="Profile_save" xml:space="preserve">
+    <value>save</value>
   </data>
 </root>

@@ -7,6 +7,7 @@ namespace MyProject.Models
 {
     public class ProfileViewModel
     {
+        public string AvatarUrl { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }

@@ -14,5 +14,6 @@ namespace MyProject.EfStuff.Model
         public DateTime Birthday { get; set; }
         public string Email { get; set; }
         public Language Language { get; set; }
+        public string AvatarUrl { get; set; }
     }
 }
