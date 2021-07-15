@@ -61,6 +61,24 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Send.
+        /// </summary>
+        public static string Form_Send {
+            get {
+                return ResourceManager.GetString("Form_Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string g {
+            get {
+                return ResourceManager.GetString("g", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на DISCOVER MENU.
         /// </summary>
         public static string Index_discover_menu {
@@ -219,6 +237,15 @@ namespace MyProject.Localization {
         public static string Placeholder_password {
             get {
                 return ResourceManager.GetString("Placeholder_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Form.
+        /// </summary>
+        public static string Profile_Form {
+            get {
+                return ResourceManager.GetString("Profile_Form", resourceCulture);
             }
         }
     }

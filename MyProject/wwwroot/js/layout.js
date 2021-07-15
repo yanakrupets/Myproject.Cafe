@@ -15,18 +15,6 @@
 		$('.lang-content').addClass('hide');
 	})
 
-	//$('.lang-content .lang').click(function () {
-	//	var language = $(this).attr("value");
-	//	var url = "/User/UpdateLang?lang=" + language;
-	//	$.get(url)
-	//		.done(function () {
-	//			location.reload();
-	//		})
-	//		.fail(function () {
-
-	//		})
-	//})
-
 	$('.lang-content .lang').click(function () {
 		var language = $(this).attr("value");
 		var url = "/User/UpdateLang?lang=" + language;

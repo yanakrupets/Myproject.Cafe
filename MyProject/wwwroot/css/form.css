@@ -1,0 +1,21 @@
+﻿.form-block {
+    height: 100vh;
+    background: url(/images/cafe9-gray.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    width: 500px;
+    background: #2c2e35;
+}
+
+.form-field {
+    margin-left: 20px;
+}
+
+.form .pglogbut {
+    border: 1px solid rgb(49 78 179);
+    margin: 20px;
+}

@@ -61,8 +61,6 @@ namespace MyProject.Controllers
                 return Redirect(model.ReturnUrl);
             }
 
-            //_userService.LangChange(user.Language);
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -100,7 +98,9 @@ namespace MyProject.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            return View();
+            var user = _userService.GetCurrent();
+            var viewModel = _mapper.Map<ProfileViewModel>(user);
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Logout()
@@ -112,7 +112,7 @@ namespace MyProject.Controllers
         public IActionResult UpdateLang(string lang)
         {
             var user = _userService.GetCurrent();
-            if(user != null)
+            if (user != null)
             {
                 user.Language = (Language)Enum.Parse(typeof(Language), lang);
                 _userRepository.Save(user);
@@ -120,6 +120,32 @@ namespace MyProject.Controllers
             }
 
             return Json(false);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Form()
+        {
+            var model = new UserFormViewModel();
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Form(UserFormViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            var user = _userService.GetCurrent();
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            user.Birthday = model.Birthday ?? new DateTime();
+            user.Email = model.Email;
+            _userRepository.Save(user);
+
+            return RedirectToAction("Profile", "User");
         }
     }
 }

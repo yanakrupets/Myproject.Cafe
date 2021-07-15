@@ -77,6 +77,8 @@ namespace MyProject
             var configExpression = new MapperConfigurationExpression();
 
             MapBoth<User, RegistrationViewModel>(configExpression);
+            MapBoth<User, UserFormViewModel>(configExpression);
+            MapBoth<User, ProfileViewModel>(configExpression);
 
             var mapperConfiguration = new MapperConfiguration(configExpression);
             var mapper = new Mapper(mapperConfiguration);

@@ -3,6 +3,7 @@
     background: url(/images/cafe9-gray.jpg);
     display: flex;
     justify-content: center;
+    padding: 80px 0px 10px 0px;
 }
 
 .profile-page {
@@ -13,4 +14,5 @@
 .special-offer-block {
     background: #656565;
     width: 15%;
+    margin-left: 5px;
 }
