@@ -24,6 +24,11 @@ namespace MyProject.EfStuff.Repositories
             return _dbSet.SingleOrDefault(x => x.Id == id);
         }
 
+        public virtual List<ModelType> GetAll()
+        {
+            return _dbSet.ToList();
+        }
+
         public virtual void Save(ModelType model)
         {
             if (model.Id > 0)

@@ -1,0 +1,63 @@
+﻿@using MyProject.Models
+@using MyProject.Service
+@using MyProject.EfStuff.Repositories
+@using MyProject.Localization
+@using MyProject.EfStuff.Model
+@model ReviewViewModel
+@inject IUserService userService
+@inject IReviewRepository reviewRepository
+@inject IUserRepository userRepository
+
+@section Style
+{
+    <link rel="stylesheet" href="~/css/review.css?v=4">
+}
+
+<div class="review-block">
+    <div class="central-review-block">
+        <div class="review">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form action="/Review/Reviews" method="post">
+                    <div>
+                        @Html.TextAreaFor(model => model.ReviewMessage, new
+                        {
+                            placeholder = Resource.Review_placeholder
+                        })
+                    </div>
+                    <div>
+                        @{
+                            var user = userService.GetCurrent();
+                            Model.Owner = user.Id;
+                        }
+                        @Html.HiddenFor(model => model.Owner)
+                        @Html.HiddenFor(model => model.Date)
+                    </div>
+                    <input type="submit" class="pglogbut" value="@Resource.Form_Send" />
+                </form>
+            }
+            else
+            {
+                <div class="review_warning">
+                    <div>@Resource.Review_warning .</div>
+                    <div>
+                        @Resource.Review_please
+                        <a href="../User/Registration">@Resource.Review_register</a>
+                        @Resource.Layout_or
+                        <a href="../User/Login">@Resource.Review_sign_in</a>
+                    </div>
+                </div>
+             }
+             <div>
+                 @foreach (var review in reviewRepository.GetAll().OfType<Review>().Reverse())
+                 {
+                     <div class="owner_date">
+                         <div class="review-owner">@userRepository.Get(review.Owner).Login</div>
+                         <div>@review.Date</div>
+                     </div>
+                     <div class="review-message">@review.ReviewMessage</div>
+                 }
+             </div>
+        </div>
+    </div>
+</div>

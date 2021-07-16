@@ -183,7 +183,31 @@
   <data name="Profile_Form" xml:space="preserve">
     <value>Анкета</value>
   </data>
+  <data name="Profile_review" xml:space="preserve">
+    <value>Оставьте свой отзыв</value>
+  </data>
   <data name="Profile_save" xml:space="preserve">
     <value>сохранить</value>
+  </data>
+  <data name="Review_look" xml:space="preserve">
+    <value>Посмотрите отзывы от наших поситителей:</value>
+  </data>
+  <data name="Review_placeholder" xml:space="preserve">
+    <value>Оставьте ваш отзыв</value>
+  </data>
+  <data name="Review_please" xml:space="preserve">
+    <value>Пожалуйста,</value>
+  </data>
+  <data name="Review_register" xml:space="preserve">
+    <value>зарегистрируйтесь</value>
+  </data>
+  <data name="Review_review" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="Review_sign_in" xml:space="preserve">
+    <value>войдите</value>
+  </data>
+  <data name="Review_warning" xml:space="preserve">
+    <value>Что бы оставить свой отзыв вы должны быть зарегистрированны</value>
   </data>
 </root>

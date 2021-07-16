@@ -12,5 +12,7 @@ namespace MyProject.EfStuff
         public CafeDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Review> Rewiews { get; set; }
     }
 }

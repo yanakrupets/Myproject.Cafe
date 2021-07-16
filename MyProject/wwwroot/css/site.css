@@ -176,3 +176,17 @@
     justify-content: center;
 }
 /*carousel*/
+
+.review_main_page {
+    display: flex;
+    justify-content: space-around;
+    background: #967a55;
+    border-top: 3px solid #212121;
+}
+
+    .review_main_page .message {
+        font-family: 'Hairline';
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px 0px;
+    }

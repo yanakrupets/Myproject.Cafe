@@ -7,6 +7,8 @@ namespace MyProject.Models
 {
     public class ReviewViewModel
     {
-        public string Review { get; set; }
+        public long Owner { get; set; }
+        public string ReviewMessage { get; set; }
+        public DateTime Date { get; set; }
     }
 }

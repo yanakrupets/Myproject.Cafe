@@ -18,10 +18,10 @@ namespace MyProject.Controllers
 {
     public class UserController : Controller
     {
-        public IUserRepository _userRepository;
-        public IUserService _userService;
-        public IMapper _mapper;
-        public IPathHelper _pathHelper;
+        private IUserRepository _userRepository;
+        private IUserService _userService;
+        private IMapper _mapper;
+        private IPathHelper _pathHelper;
 
         public UserController(IUserRepository userRepository, IUserService userService,
             IMapper mapper, IPathHelper pathHelper)

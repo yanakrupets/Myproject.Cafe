@@ -70,6 +70,9 @@ namespace MyProject
         {
             services.AddScoped<IUserRepository>(diContainer =>
                 new UserRepository(diContainer.GetService<CafeDbContext>()));
+
+            services.AddScoped<IReviewRepository>(diContainer =>
+                new ReviewRepository(diContainer.GetService<CafeDbContext>()));
         }
 
         private void RegistrationMapper(IServiceCollection services)
@@ -79,6 +82,7 @@ namespace MyProject
             MapBoth<User, RegistrationViewModel>(configExpression);
             MapBoth<User, UserFormViewModel>(configExpression);
             MapBoth<User, ProfileViewModel>(configExpression);
+            MapBoth<Review, ReviewViewModel>(configExpression);
 
             var mapperConfiguration = new MapperConfiguration(configExpression);
             var mapper = new Mapper(mapperConfiguration);

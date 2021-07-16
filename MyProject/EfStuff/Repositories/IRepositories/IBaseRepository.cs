@@ -1,4 +1,5 @@
 ﻿using MyProject.EfStuff.Model;
+using System.Collections.Generic;
 
 namespace MyProject.EfStuff.Repositories
 {
@@ -6,5 +7,6 @@ namespace MyProject.EfStuff.Repositories
     {
         public ModelType Get(long id);
         public void Save(ModelType model);
+        public List<ModelType> GetAll();
     }
 }

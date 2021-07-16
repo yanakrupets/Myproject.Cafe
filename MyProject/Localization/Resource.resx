@@ -183,7 +183,31 @@
   <data name="Profile_Form" xml:space="preserve">
     <value>Form</value>
   </data>
+  <data name="Profile_review" xml:space="preserve">
+    <value>Leave your review</value>
+  </data>
   <data name="Profile_save" xml:space="preserve">
     <value>save</value>
+  </data>
+  <data name="Review_look" xml:space="preserve">
+    <value>Check out reviews from our visitors:</value>
+  </data>
+  <data name="Review_placeholder" xml:space="preserve">
+    <value>Leave your review</value>
+  </data>
+  <data name="Review_please" xml:space="preserve">
+    <value>Please,</value>
+  </data>
+  <data name="Review_register" xml:space="preserve">
+    <value>register</value>
+  </data>
+  <data name="Review_review" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Review_sign_in" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="Review_warning" xml:space="preserve">
+    <value>To leave your review you must be authorized</value>
   </data>
 </root>

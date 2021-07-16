@@ -1,6 +1,7 @@
 ﻿.profile-block {
     height: calc(100vh - 90px);
     background: url(/images/cafe9-gray.jpg);
+    background-size: 100%;
     display: flex;
     justify-content: center;
     padding: 80px 0px 10px 0px;
@@ -78,4 +79,8 @@
 
 .label:hover{
     color: yellow;
+}
+
+.form-information{
+    margin-top: 5px;
 }

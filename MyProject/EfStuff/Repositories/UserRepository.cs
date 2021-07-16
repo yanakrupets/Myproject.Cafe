@@ -8,8 +8,9 @@ namespace MyProject.EfStuff.Repositories
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository(CafeDbContext cafeDbContext)
-            : base(cafeDbContext) { }
+        public UserRepository(CafeDbContext cafeDbContext) : base(cafeDbContext) 
+        { 
+        }
 
         public User Get(string name)
         {

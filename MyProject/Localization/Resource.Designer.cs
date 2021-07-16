@@ -259,11 +259,83 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Leave your review.
+        /// </summary>
+        public static string Profile_review {
+            get {
+                return ResourceManager.GetString("Profile_review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на save.
         /// </summary>
         public static string Profile_save {
             get {
                 return ResourceManager.GetString("Profile_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Check out reviews from our visitors:.
+        /// </summary>
+        public static string Review_look {
+            get {
+                return ResourceManager.GetString("Review_look", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Leave your review.
+        /// </summary>
+        public static string Review_placeholder {
+            get {
+                return ResourceManager.GetString("Review_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please,.
+        /// </summary>
+        public static string Review_please {
+            get {
+                return ResourceManager.GetString("Review_please", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на register.
+        /// </summary>
+        public static string Review_register {
+            get {
+                return ResourceManager.GetString("Review_register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Reviews.
+        /// </summary>
+        public static string Review_review {
+            get {
+                return ResourceManager.GetString("Review_review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на sign in.
+        /// </summary>
+        public static string Review_sign_in {
+            get {
+                return ResourceManager.GetString("Review_sign_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To leave your review you must be authorized.
+        /// </summary>
+        public static string Review_warning {
+            get {
+                return ResourceManager.GetString("Review_warning", resourceCulture);
             }
         }
     }
