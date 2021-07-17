@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="~/css/form.css?v=2">
     <link rel="stylesheet" href="~/css/errorMessage.css">
 }
+@section Script
+{
+    <script src="~/js/form.js"></script>
+}
 <div class="form-block">
     <form action="../User/Form" method="post" class="form">
         <div class="form-field">
@@ -26,9 +30,22 @@
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Birthday, new { type = "date",
+            @Html.TextBoxFor(model => model.Birthday, new
+            {
+                type = "date",
                 @class = "input-fields",
-                placeholder = $"{nameof(Model.Birthday)}" })
+                placeholder = $"{nameof(Model.Birthday)}"
+            })
+        </div>
+        <div class="form-field">
+            @Html.TextBoxFor(model => model.Card, new
+            {
+                id = "user-card",
+                type = "text",
+                @class = "input-fields",
+                placeholder = $"{nameof(Model.Card)}"
+            })
+            @Html.ValidationMessageFor(model => model.Card)
         </div>
         <div class="form-field">
             @Html.TextBoxFor(model => model.Email, new

@@ -15,5 +15,6 @@ namespace MyProject.EfStuff.Model
         public string Email { get; set; }
         public Language Language { get; set; }
         public string AvatarUrl { get; set; }
+        public string Card { get; set; }
     }
 }

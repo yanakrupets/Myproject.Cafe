@@ -165,6 +165,7 @@ namespace MyProject.Controllers
             user.Name = model.Name;
             user.Surname = model.Surname;
             user.Birthday = model.Birthday ?? new DateTime();
+            user.Card = model.Card;
             user.Email = model.Email;
             _userRepository.Save(user);
 

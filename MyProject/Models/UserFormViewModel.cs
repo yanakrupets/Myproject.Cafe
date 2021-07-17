@@ -17,6 +17,9 @@ namespace MyProject.Models
 
         public DateTime? Birthday { get; set; }
 
+        [RegularExpression(@"(\d{4}([ ]|)\d{4}([ ]|)\d{4}([ ]|)\d{4})", ErrorMessage = "Wrong card number")]
+        public string Card { get; set; }
+
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Wrong Email")]
         public string Email { get; set; }
     }

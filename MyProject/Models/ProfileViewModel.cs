@@ -11,6 +11,7 @@ namespace MyProject.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }
+        public string Card { get; set; }
         public string Email { get; set; }
     }
 }

@@ -45,13 +45,19 @@
                     @if (Model.Birthday != new DateTime())
                     {
                         <div>
-                            @nameof(Model.Birthday) @Model.Birthday.ToShortDateString()
+                            @nameof(Model.Birthday): @Model.Birthday.ToShortDateString()
                         </div>
                     }
                     @if (Model.Email != null)
                     {
                         <div>
-                            @nameof(Model.Email) @Model.Email
+                            @nameof(Model.Email): @Model.Email
+                        </div>
+                    }
+                    @if (Model.Card != null)
+                    {
+                        <div>
+                            @nameof(Model.Card): @Model.Card
                         </div>
                     }
                 </div>
