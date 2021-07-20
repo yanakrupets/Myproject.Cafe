@@ -1,0 +1,8 @@
+﻿@model CategoriesViewModel
+
+<div>
+    @foreach(var category in Model.Categories)
+    {
+        <div class="category-name">@category.Name</div>
+    }
+</div>

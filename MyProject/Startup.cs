@@ -73,6 +73,15 @@ namespace MyProject
 
             services.AddScoped<IReviewRepository>(diContainer =>
                 new ReviewRepository(diContainer.GetService<CafeDbContext>()));
+
+            services.AddScoped<ICategoryRepository>(diContainer =>
+                new CategoryRepository(diContainer.GetService<CafeDbContext>()));
+
+            services.AddScoped<IDishRepository>(diContainer =>
+                new DishRepository(diContainer.GetService<CafeDbContext>()));
+
+            services.AddScoped<IPriceRepository>(diContainer =>
+                new PriceRepository(diContainer.GetService<CafeDbContext>()));
         }
 
         private void RegistrationMapper(IServiceCollection services)
@@ -83,6 +92,9 @@ namespace MyProject
             MapBoth<User, UserFormViewModel>(configExpression);
             MapBoth<User, ProfileViewModel>(configExpression);
             MapBoth<Review, ReviewViewModel>(configExpression);
+            MapBoth<CategoryViewModel, Category>(configExpression);
+            MapBoth<DishViewModel, Dish>(configExpression);
+            MapBoth<PriceViewModel, Price>(configExpression);
 
             var mapperConfiguration = new MapperConfiguration(configExpression);
             var mapper = new Mapper(mapperConfiguration);

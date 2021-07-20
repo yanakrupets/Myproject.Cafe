@@ -13,17 +13,32 @@ namespace MyProject.Controllers
 {
     public class CafeController : Controller
     {
-        private IReviewRepository _reviewRepository;
+        private ICategoryRepository _categoryRepository;
+        private IDishRepository _dishRepository;
+        private IPriceRepository _priceRepository;
         private IMapper _mapper;
 
-        public CafeController(IReviewRepository reviewRepository)
+        public CafeController(ICategoryRepository categoryRepository, IDishRepository dishRepository,
+            IMapper mapper, IPriceRepository priceRepository)
         {
-            _reviewRepository = reviewRepository;
+            _categoryRepository = categoryRepository;
+            _dishRepository = dishRepository;
+            _priceRepository = priceRepository;
+            _mapper = mapper;
         }
 
         public IActionResult Menu()
         {
-            return View();
+            var prices = _priceRepository.GetAll();
+            var dishes = _dishRepository.GetAll();
+            var categories = _categoryRepository.GetAll();
+            var modelCategories = _mapper.Map<List<CategoryViewModel>>(categories);
+
+            var model = new CategoriesViewModel()
+            {
+                Categories = modelCategories
+            };
+            return View(model);
         }
 
         public IActionResult SpecialOffer()

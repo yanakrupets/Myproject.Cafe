@@ -1,3 +1,80 @@
 ﻿@using MyProject.Localization
+@using MyProject.EfStuff.Repositories
+@using MyProject.EfStuff.Model
 
-<div style="display:flex; font-size: 500px">@Resource.Layout_Menu</div>
+@inject ICategoryRepository categoryRepository
+
+@model CategoriesViewModel
+
+@section Style
+{ 
+    <link rel="stylesheet"  href="/css/menu.css?v=5"/>
+}
+@section Script
+{
+    <script src="~/js/menu.js"></script>
+}
+
+<div class="menu-page">
+    <div class="menu-page-central-block">
+        <div class="menu-title">@Resource.Layout_Menu</div>
+        <div>
+            <div class="categories">
+                @Html.Partial("_categories", Model)
+            </div>
+            <div class="dishes">
+                @foreach(var category in Model.Categories)
+                {
+                    <div class="category">@category.Name</div>
+                    <div class="dish">
+                        @foreach (var dish in category.Dishes)
+                        {
+                            <div class="dish-block">
+                                <img src="@dish.ImageUrl" />
+                                <div class="dish-name">@dish.Name</div>
+                                <div class="size-price">
+                                    <div class="size-block">
+                                        @if (dish.Prices.SingleOrDefault(x => x.Size == Size.NoSize) == null)
+                                        {
+                                            <div class="size">@nameof(PriceViewModel.Size): </div>
+                                        }
+                                        @foreach (var size in dish.Prices.Where(x => x.Size == x.Size))
+                                        {
+                                            if (size.Size != Size.NoSize)
+                                            {
+                                                <div class="dish-size size" value="@size.Size">@size.Size</div>
+                                            }
+                                        }
+                                    </div>
+                                    @foreach (var price in dish.Prices)
+                                    {
+                                        if (price.Weight != 0 && price.Size == Size.NoSize)
+                                        {
+                                            <div class="weight">
+                                                <div>@price.Weight</div>
+                                                <div>@price.Measure</div>
+                                            </div>
+                                            <div class="price">@price.Prise$</div>
+                                        }
+                                        else if (price.Size == Size.NoSize)
+                                        {
+                                            <div class="price">@price.Prise$</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="weight hide" id="@price.Size">
+                                                <div>@price.Weight</div>
+                                                <div>@price.Measure</div>
+                                            </div>
+                                            <div class="price hide" id="@price.Size">@price.Prise$</div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                         }
+                    </div>
+                 }
+            </div>
+        </div>
+    </div>
+</div>

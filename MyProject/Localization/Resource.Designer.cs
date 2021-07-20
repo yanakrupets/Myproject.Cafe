@@ -61,6 +61,24 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Exit.
+        /// </summary>
+        public static string Form_exit {
+            get {
+                return ResourceManager.GetString("Form_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save.
+        /// </summary>
+        public static string Form_Save {
+            get {
+                return ResourceManager.GetString("Form_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Send.
         /// </summary>
         public static string Form_Send {
@@ -246,6 +264,15 @@ namespace MyProject.Localization {
         public static string Profile_change_avatar {
             get {
                 return ResourceManager.GetString("Profile_change_avatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Edit.
+        /// </summary>
+        public static string Profile_Edit {
+            get {
+                return ResourceManager.GetString("Profile_Edit", resourceCulture);
             }
         }
         

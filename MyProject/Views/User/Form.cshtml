@@ -1,8 +1,10 @@
 ﻿@using MyProject.Localization
+@using MyProject.Service
+@inject IUserService userService
 @model UserFormViewModel
 @section Style
 {
-    <link rel="stylesheet" href="~/css/form.css?v=2">
+    <link rel="stylesheet" href="~/css/form.css?v=3">
     <link rel="stylesheet" href="~/css/errorMessage.css">
 }
 @section Script
@@ -11,17 +13,18 @@
 }
 <div class="form-block">
     <form action="../User/Form" method="post" class="form">
+        @{
+            var user = userService.GetCurrent();
+        }
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Name, new
-            {
+            @Html.TextBox("Name", user.Name, new {
                 type = "text",
-                @class = "input-fields",
-                placeholder = $"{nameof(Model.Name)}"
+                @class = "input-fields"
             })
             @Html.ValidationMessageFor(model => model.Name)
         </div>
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Surname, new
+            @Html.TextBox("Surname", user.Surname, new
             {
                 type = "text",
                 @class = "input-fields",
@@ -30,7 +33,7 @@
             @Html.ValidationMessageFor(model => model.Surname)
         </div>
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Birthday, new
+            @Html.TextBox("Birthday", user.Birthday, new
             {
                 type = "date",
                 @class = "input-fields",
@@ -38,7 +41,7 @@
             })
         </div>
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Card, new
+            @Html.TextBox("Card", user.Card, new
             {
                 id = "user-card",
                 type = "text",
@@ -48,7 +51,7 @@
             @Html.ValidationMessageFor(model => model.Card)
         </div>
         <div class="form-field">
-            @Html.TextBoxFor(model => model.Email, new
+            @Html.TextBox("Email", user.Email, new
             {
                 type = "text",
                 @class = "input-fields",
@@ -56,6 +59,11 @@
             })
             @Html.ValidationMessageFor(model => model.Email)
         </div>
-        <input class="pglogbut" type="submit" value="@Resource.Form_Send" />
+        <div class="buttons">
+            <input class="pglogbut" type="submit" value="@Resource.Form_Save" />
+            <a href="../User/Profile" class="link">
+                <div class="pglogbut">@Resource.Form_exit</div>
+            </a>
+        </div>
     </form>
 </div>

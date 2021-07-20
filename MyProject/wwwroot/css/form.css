@@ -19,3 +19,7 @@
     border: 1px solid rgb(49 78 179);
     margin: 20px;
 }
+
+.form .buttons{
+    display: flex;
+}
