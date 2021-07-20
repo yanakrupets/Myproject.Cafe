@@ -9,8 +9,6 @@
         $('.category-name').removeClass('not-active');
     })
 
-    $(`.dish-size[value='S']`).click();
-
     $('.dish-size').click(function () {
         $('.dish-size').removeClass('selected-size');
         $(this).addClass('selected-size');
@@ -20,4 +18,11 @@
         $(this).closest('.size-price').find(`.price[id='${size}']`).removeClass('hide');
         $(this).closest('.size-price').find(`.weight[id='${size}']`).removeClass('hide');
     })
+
+    $('.category-name').click(function () {
+        var elementClick = $(this).attr("href");
+        var destination = $(elementClick).offset().top;
+        $('html').animate({ scrollTop: destination - 85 }, 1100);
+        return false;
+    });
 });

@@ -1,8 +1,8 @@
 ﻿@model CategoriesViewModel
 
-<div>
+<div class="category-name-block">
     @foreach(var category in Model.Categories)
     {
-        <div class="category-name">@category.Name</div>
+        <a href="#@category.Name" class="category-name">@category.Name</a>
     }
 </div>

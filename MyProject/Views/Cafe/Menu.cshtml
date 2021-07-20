@@ -25,7 +25,7 @@
             <div class="dishes">
                 @foreach(var category in Model.Categories)
                 {
-                    <div class="category">@category.Name</div>
+                    <div class="category" id="@category.Name">@category.Name</div>
                     <div class="dish">
                         @foreach (var dish in category.Dishes)
                         {
@@ -67,6 +67,7 @@
                                                 <div>@price.Measure</div>
                                             </div>
                                             <div class="price hide" id="@price.Size">@price.Prise$</div>
+                                            
                                         }
                                     }
                                 </div>
