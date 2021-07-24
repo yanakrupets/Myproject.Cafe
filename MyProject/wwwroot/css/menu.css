@@ -68,7 +68,7 @@
     background: gainsboro;
     max-width: 30%;
     margin: 10px;
-    height: 400px;
+    height: 480px;
 }
 
     .dish-block img {
@@ -94,7 +94,7 @@
     justify-content: flex-end;
     margin-right: 10px;
     font-size: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .selected-size {
@@ -122,4 +122,18 @@
     display: flex;
     font-family: -webkit-pictograph;
     margin-left: 7px;
+}
+
+.dish-block .button {
+    display: flex;
+    justify-content: center;
+}
+
+.button-add {
+    width: 90%;
+    height: 25px;
+    background: #574f50;
+    color: white;
+    border: none;
+    cursor: pointer;
 }

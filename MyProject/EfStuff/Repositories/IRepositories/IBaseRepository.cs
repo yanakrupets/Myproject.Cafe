@@ -8,5 +8,7 @@ namespace MyProject.EfStuff.Repositories
         public ModelType Get(long id);
         public void Save(ModelType model);
         public List<ModelType> GetAll();
+        public void Remove(long id);
+        public void Remove(ModelType model);
     }
 }

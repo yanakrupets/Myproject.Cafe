@@ -1,1 +1,104 @@
-﻿
+﻿@using MyProject.Localization
+@using MyProject.Service
+@using MyProject.EfStuff.Model
+@inject IUserService userService
+@model OrderViewModel
+
+@section Style
+{
+    <link rel="stylesheet" href="~/css/basket.css?v=2">
+}
+@section Script
+{
+    <script src="~/js/basket.js"></script>
+    <script src="~/js/mask.js"></script>
+}
+
+<div class="basket-main-block">
+    <div class="dishes-in-order">
+        @foreach (var dish in Model.DishesInOrder)
+        {
+            <div class="basket-dish-block">
+                <div class="basket-dish-img">
+                    <img src="@dish.ImageUrl"/>
+                </div>
+                <div class="basket-dish">
+                    <div class="basket-dish-name">@dish.Name</div>
+                    <div>@dish.Prise</div>
+                    @if (dish.Weight != 0)
+                    {
+                        <div>@dish.Weight</div>
+                        <div>@dish.Measure</div>
+                    }
+                </div>
+                <div class="icon delete-dish" name="@dish.Id"></div>
+            </div>
+        }
+        <div class="nice-popup hide">
+            <div class="popup-cover"></div>
+            <div class="check-block">
+                <form action="/Cafe/Basket" method="post">
+                    <div class="basket-card">
+                        @{
+                            var user = userService.GetCurrent();
+                        }
+                        @if (user.Card != null)
+                        {
+                            <input name="@nameof(OrderViewModel.Card)" @*id="basket-card"*@ class="input-fields" type="text"
+                                   placeholder="@Resource.Basket_Card" value="@user.Card" />
+                        }
+                        else
+                        {
+                            <input name="@nameof(OrderViewModel.Card)" @*id="basket-card"*@ class="input-fields" type="text"
+                                   placeholder="@Resource.Basket_Card" />
+                        }
+                        @if (user.Name != null)
+                        {
+                            <input name="@nameof(OrderViewModel.CustomerName)" @*id="basket-card"*@ class="input-fields" type="text"
+                                   placeholder="@Resource.Basket_customer_name" value="@user.Name" />
+                        }
+                        else
+                        {
+                            <input name="@nameof(OrderViewModel.CustomerName)" @*id="basket-card"*@ class="input-fields" type="text"
+                                   placeholder="@Resource.Basket_customer_name" />
+                        }
+
+                        <p>@Resource.Basket_payment_method:</p>
+                        <div>
+                            <input type="radio" id="payment-method1"
+                                   name="@nameof(OrderViewModel.PaymentMethod)" value="@PaymentMethod.ByCardOnline">
+                            <label for="payment-method1">@Resource.Basket_by_card_online</label>
+                            <input type="radio" id="payment-method2"
+                                   name="@nameof(OrderViewModel.PaymentMethod)" value="@PaymentMethod.ByCardWithCourier">
+                            <label for="payment-method2">@Resource.Basket_by_card_with_curier</label>
+                            <input type="radio" id="payment-method3"
+                                   name="@nameof(OrderViewModel.PaymentMethod)" value="@PaymentMethod.Cash">
+                            <label for="payment-method3">@Resource.Basket_cash</label>
+                        </div>
+
+                        <p>@Resource.Basket_delivery:</p>
+                        <div>
+                            <input type="radio" id="delivery-yes"
+                                   name="@nameof(OrderViewModel.Delivery)" value="@true">
+                            <label for="delivery-yes">@Resource.Yes</label>
+                            <input type="radio" id="delivery-no"
+                                   name="@nameof(OrderViewModel.Delivery)" value="@false">
+                            <label for="delivery-no">@Resource.No</label>
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.DishesInOrder)
+                    @Html.HiddenFor(model => model.UserId)
+                    <div class="basket-confirm">
+                        <input class="pglogbut" type="submit" value="@Resource.Basket_confirm" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="basket-button">
+            <button class="pglogbut basket-pay">
+                @Resource.Basket_Pay
+            </button>
+        </div>
+    </div>
+</div>

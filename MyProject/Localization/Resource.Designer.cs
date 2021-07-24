@@ -61,6 +61,87 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на card online.
+        /// </summary>
+        public static string Basket_by_card_online {
+            get {
+                return ResourceManager.GetString("Basket_by_card_online", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на card.
+        /// </summary>
+        public static string Basket_by_card_with_curier {
+            get {
+                return ResourceManager.GetString("Basket_by_card_with_curier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на card.
+        /// </summary>
+        public static string Basket_Card {
+            get {
+                return ResourceManager.GetString("Basket_Card", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cash.
+        /// </summary>
+        public static string Basket_cash {
+            get {
+                return ResourceManager.GetString("Basket_cash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Confirm.
+        /// </summary>
+        public static string Basket_confirm {
+            get {
+                return ResourceManager.GetString("Basket_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Customer name.
+        /// </summary>
+        public static string Basket_customer_name {
+            get {
+                return ResourceManager.GetString("Basket_customer_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Delivery.
+        /// </summary>
+        public static string Basket_delivery {
+            get {
+                return ResourceManager.GetString("Basket_delivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Pay.
+        /// </summary>
+        public static string Basket_Pay {
+            get {
+                return ResourceManager.GetString("Basket_Pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Payment method.
+        /// </summary>
+        public static string Basket_payment_method {
+            get {
+                return ResourceManager.GetString("Basket_payment_method", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Exit.
         /// </summary>
         public static string Form_exit {
@@ -169,6 +250,15 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Basket.
+        /// </summary>
+        public static string Layout_Basket {
+            get {
+                return ResourceManager.GetString("Layout_Basket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Home.
         /// </summary>
         public static string Layout_Home {
@@ -237,6 +327,24 @@ namespace MyProject.Localization {
         public static string Layout_SignOut {
             get {
                 return ResourceManager.GetString("Layout_SignOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Add to basket.
+        /// </summary>
+        public static string Menu_add_to_basket {
+            get {
+                return ResourceManager.GetString("Menu_add_to_basket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -363,6 +471,15 @@ namespace MyProject.Localization {
         public static string Review_warning {
             get {
                 return ResourceManager.GetString("Review_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

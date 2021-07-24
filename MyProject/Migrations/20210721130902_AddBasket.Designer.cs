@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyProject.EfStuff;
 
 namespace MyProject.Migrations
 {
     [DbContext(typeof(CafeDbContext))]
-    partial class CafeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210721130902_AddBasket")]
+    partial class AddBasket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace MyProject.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BasketDishInOrder", b =>
+            modelBuilder.Entity("BasketDish", b =>
                 {
                     b.Property<long>("BasketsId")
                         .HasColumnType("bigint");
@@ -31,22 +33,7 @@ namespace MyProject.Migrations
 
                     b.HasIndex("DishesId");
 
-                    b.ToTable("BasketDishInOrder");
-                });
-
-            modelBuilder.Entity("DishInOrderOrder", b =>
-                {
-                    b.Property<long>("DishesInOrderId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdersId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("DishesInOrderId", "OrdersId");
-
-                    b.HasIndex("OrdersId");
-
-                    b.ToTable("DishInOrderOrder");
+                    b.ToTable("BasketDish");
                 });
 
             modelBuilder.Entity("MyProject.EfStuff.Model.Basket", b =>
@@ -98,41 +85,16 @@ namespace MyProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("OrderId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("Dishes");
-                });
-
-            modelBuilder.Entity("MyProject.EfStuff.Model.DishInOrder", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Measure")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Prise")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DishesInOrderd");
                 });
 
             modelBuilder.Entity("MyProject.EfStuff.Model.Order", b =>
@@ -142,22 +104,13 @@ namespace MyProject.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Delivery")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderNumber")
+                    b.Property<string>("OrderName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalPrice")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<long?>("UserId")
@@ -262,7 +215,7 @@ namespace MyProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BasketDishInOrder", b =>
+            modelBuilder.Entity("BasketDish", b =>
                 {
                     b.HasOne("MyProject.EfStuff.Model.Basket", null)
                         .WithMany()
@@ -270,24 +223,9 @@ namespace MyProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyProject.EfStuff.Model.DishInOrder", null)
+                    b.HasOne("MyProject.EfStuff.Model.Dish", null)
                         .WithMany()
                         .HasForeignKey("DishesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DishInOrderOrder", b =>
-                {
-                    b.HasOne("MyProject.EfStuff.Model.DishInOrder", null)
-                        .WithMany()
-                        .HasForeignKey("DishesInOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyProject.EfStuff.Model.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -308,6 +246,10 @@ namespace MyProject.Migrations
                     b.HasOne("MyProject.EfStuff.Model.Category", "Category")
                         .WithMany("Dishes")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("MyProject.EfStuff.Model.Order", null)
+                        .WithMany("DishesInOrder")
+                        .HasForeignKey("OrderId");
 
                     b.Navigation("Category");
                 });
@@ -338,6 +280,11 @@ namespace MyProject.Migrations
             modelBuilder.Entity("MyProject.EfStuff.Model.Dish", b =>
                 {
                     b.Navigation("Prices");
+                });
+
+            modelBuilder.Entity("MyProject.EfStuff.Model.Order", b =>
+                {
+                    b.Navigation("DishesInOrder");
                 });
 
             modelBuilder.Entity("MyProject.EfStuff.Model.User", b =>

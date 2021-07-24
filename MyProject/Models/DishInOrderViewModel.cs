@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace MyProject.Models
 {
-    public class DishViewModel
+    public class DishInOrderViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        public List<PriceViewModel> Prices { get; set; }
+        public Size Size { get; set; }
+        public ushort Weight { get; set; }
+        public WeightMeasure Measure { get; set; }
+        public double Prise { get; set; }
     }
 }

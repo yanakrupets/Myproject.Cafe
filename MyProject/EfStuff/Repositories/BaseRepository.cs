@@ -41,5 +41,17 @@ namespace MyProject.EfStuff.Repositories
             }
             _cafeDbContext.SaveChanges();
         }
+
+        public virtual void Remove(long id)
+        {
+            var model = Get(id);
+            Remove(model);
+        }
+
+        public virtual void Remove(ModelType model)
+        {
+            _cafeDbContext.Remove(model);
+            _cafeDbContext.SaveChanges();
+        }
     }
 }

@@ -1,0 +1,76 @@
+﻿.basket-main-block {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    padding: 80px 0px 10px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.basket-dish-block {
+    display: flex;
+    margin: 20px;
+    background: #f9f9f9;
+    justify-content: space-between;
+}
+
+.dishes-in-order {
+    background: #bdbdbd;
+    width: 60%;
+}
+
+.basket-dish-img {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.basket-dish-block img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.basket-dish{
+    margin: 20px;
+    font-size: 20px;
+    font-family: -webkit-pictograph;
+    display: flex;
+}
+
+.basket-dish-name{
+    margin-right: 50px;
+}
+
+.delete-dish {
+    cursor: pointer;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.basket-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+    .basket-button .pglogbut{
+        border: 1px solid rgb(83 93 55);
+        margin: 10px 20px 30px 0px;
+    }
+
+.check-block {
+    height: 500px;
+    width: 800px;
+    background: white;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.basket-card .input-fields {
+    border: 1px solid rgb(83 93 55);
+}
+
+.basket-confirm .pglogbut {
+    border: 1px solid rgb(83 93 55);
+}

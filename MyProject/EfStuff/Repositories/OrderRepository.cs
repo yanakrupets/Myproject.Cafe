@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyProject.EfStuff.Repositories
 {
-    public class DishRepository : BaseRepository<Dish>, IDishRepository
+    public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
-        public DishRepository(CafeDbContext cafeDbContext) : base(cafeDbContext)
+        public OrderRepository(CafeDbContext cafeDbContext) : base(cafeDbContext)
         {
         }
     }

@@ -19,17 +19,19 @@ namespace MyProject.Controllers
     public class UserController : Controller
     {
         private IUserRepository _userRepository;
+        private IBasketRepository _basketRepository;
         private IUserService _userService;
         private IMapper _mapper;
         private IPathHelper _pathHelper;
 
         public UserController(IUserRepository userRepository, IUserService userService,
-            IMapper mapper, IPathHelper pathHelper)
+            IMapper mapper, IPathHelper pathHelper, IBasketRepository basketRepository)
         {
             _userRepository = userRepository;
             _userService = userService;
             _mapper = mapper;
             _pathHelper = pathHelper;
+            _basketRepository = basketRepository;
         }
 
         [HttpGet]
@@ -86,6 +88,14 @@ namespace MyProject.Controllers
             if (isUserUniq)
             {
                 var user = _mapper.Map<User>(model);
+                user.Language = Language.en;
+                var basket = new Basket()
+                {
+                    Dishes = new List<DishInOrder>(),
+                    ForeignKeyUser = user.Id,
+                    User = user
+                };
+                _basketRepository.Save(basket);
                 _userRepository.Save(user);
 
                 await HttpContext.SignInAsync(

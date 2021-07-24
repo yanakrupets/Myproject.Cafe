@@ -25,53 +25,56 @@
             <div class="dishes">
                 @foreach(var category in Model.Categories)
                 {
-                    <div class="category" id="@category.Name">@category.Name</div>
+                    <div class="category" id="@category.Id">@category.Name</div>
                     <div class="dish">
                         @foreach (var dish in category.Dishes)
                         {
-                            <div class="dish-block">
-                                <img src="@dish.ImageUrl" />
-                                <div class="dish-name">@dish.Name</div>
-                                <div class="size-price">
-                                    <div class="size-block">
-                                        @if (dish.Prices.SingleOrDefault(x => x.Size == Size.NoSize) == null)
-                                        {
-                                            <div class="size">@nameof(PriceViewModel.Size): </div>
-                                        }
-                                        @foreach (var size in dish.Prices.Where(x => x.Size == x.Size))
-                                        {
-                                            if (size.Size != Size.NoSize)
-                                            {
-                                                <div class="dish-size size" value="@size.Size">@size.Size</div>
-                                            }
-                                        }
-                                    </div>
-                                    @foreach (var price in dish.Prices)
-                                    {
-                                        if (price.Weight != 0 && price.Size == Size.NoSize)
-                                        {
-                                            <div class="weight">
-                                                <div>@price.Weight</div>
-                                                <div>@price.Measure</div>
-                                            </div>
-                                            <div class="price">@price.Prise$</div>
-                                        }
-                                        else if (price.Size == Size.NoSize)
-                                        {
-                                            <div class="price">@price.Prise$</div>
-                                        }
-                                        else
-                                        {
-                                            <div class="weight hide" id="@price.Size">
-                                                <div>@price.Weight</div>
-                                                <div>@price.Measure</div>
-                                            </div>
-                                            <div class="price hide" id="@price.Size">@price.Prise$</div>
-                                            
-                                        }
-                                    }
-                                </div>
-                            </div>
+                             <div class="dish-block">
+                                 <img src="@dish.ImageUrl" />
+                                 <div class="dish-name">@dish.Name</div>
+                                 @Html.Hidden("dishId", dish.Id)
+                                 <div class="size-price">
+                                     <div class="size-block">
+                                         @if (dish.Prices.SingleOrDefault(x => x.Size == Size.NoSize) == null)
+                                         {
+                                             <div class="size">@nameof(PriceViewModel.Size): </div>
+                                         }
+                                         @foreach (var size in dish.Prices.Where(x => x.Size == x.Size))
+                                         {
+                                             if (size.Size != Size.NoSize)
+                                             {
+                                                 <div class="dish-size size" value="@size.Size" name="@dish.Id">@size.Size</div>
+                                             }
+                                         }
+                                     </div>
+                                     @foreach (var price in dish.Prices)
+                                     {
+                                         if (price.Weight != 0 && price.Size == Size.NoSize)
+                                         {
+                                             <div class="weight">
+                                                 <div>@price.Weight</div>
+                                                 <div>@price.Measure</div>
+                                             </div>
+                                             <div class="price">@price.Prise$</div>
+                                         }
+                                         else if (price.Size == Size.NoSize)
+                                         {
+                                             <div class="price">@price.Prise$</div>
+                                         }
+                                         else
+                                         {
+                                             <div class="weight hide" id="@price.Size" name="@dish.Id">
+                                                 <div>@price.Weight</div>
+                                                 <div>@price.Measure</div>
+                                             </div>
+                                             <div class="price hide" id="@price.Size" name="@dish.Id">@price.Prise$</div>
+                                         }
+                                     }
+                                 </div>
+                                 <div class="button hide">
+                                     <button class="button-add">@Resource.Menu_add_to_basket</button>
+                                 </div>
+                             </div>
                          }
                     </div>
                  }
