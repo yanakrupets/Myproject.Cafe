@@ -69,10 +69,18 @@
     background: url('/images/icons/basket1.png') center/cover;
 }
 
-.delete-dish::before {
+.delete-dish::before{
     background: url('/images/icons/outline_delete_black_36dp.png') center/cover;
 }
 
 .delete-dish:hover::before {
+    background: url('/images/icons/twotone_delete_black_36dp.png') center/cover;
+}
+
+.delete-review::before {
+    background: url('/images/icons/outline_delete_black_36dp.png') center/cover;
+}
+
+.delete-review:hover::before {
     background: url('/images/icons/twotone_delete_black_36dp.png') center/cover;
 }

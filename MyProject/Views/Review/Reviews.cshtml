@@ -10,7 +10,11 @@
 
 @section Style
 {
-    <link rel="stylesheet" href="~/css/review.css?v=4">
+    <link rel="stylesheet" href="~/css/review.css?v=5">
+}
+@section Script
+{
+    <script src="~/js/review.js"></script>
 }
 
 <div class="review-block">
@@ -21,9 +25,9 @@
                 <form action="/Review/Reviews" method="post">
                     <div>
                         @Html.TextAreaFor(model => model.ReviewMessage, new
-                        {
-                            placeholder = Resource.Review_placeholder
-                        })
+                   {
+                       placeholder = Resource.Review_placeholder
+                   })
                     </div>
                     <div>
                         @{
@@ -47,17 +51,32 @@
                         <a href="../User/Login">@Resource.Review_sign_in</a>
                     </div>
                 </div>
-             }
-             <div>
-                 @foreach (var review in reviewRepository.GetAll().OfType<Review>().Reverse())
-                 {
-                     <div class="owner_date">
-                         <div class="review-owner">@userRepository.Get(review.Owner).Login</div>
-                         <div>@review.Date</div>
-                     </div>
-                     <div class="review-message">@review.ReviewMessage</div>
-                 }
-             </div>
+            }
+            <div>
+                @{
+                    var userReview = userService.GetCurrent();
+                }
+                @foreach (var review in reviewRepository.GetAll().OfType<Review>().Reverse())
+                {
+                    <div class="owner_date">
+                        <div class="review-owner">@userRepository.Get(review.Owner).Login</div>
+                        <div>@review.Date</div>
+                    </div>
+
+                    <div class="review-message">
+                        @if (review.Owner == userReview.Id)
+                        {
+                            <div>@review.ReviewMessage</div>
+                            <div class="icon delete-review" name="@review.Id"></div>
+                        }
+                        else
+                        {
+                            <div>@review.ReviewMessage</div>
+                        }
+                    </div>
+
+                }
+            </div>
         </div>
     </div>
 </div>

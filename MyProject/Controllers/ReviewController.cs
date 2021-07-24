@@ -36,5 +36,13 @@ namespace MyProject.Controllers
             _reviewRepository.Save(model);
             return RedirectToAction("Reviews");
         }
+
+        public IActionResult RemoveReview(string reviewId)
+        {
+            var id = (long)Convert.ToDouble(reviewId);
+            _reviewRepository.Remove(id);
+
+            return Json(true);
+        }
     }
 }

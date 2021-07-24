@@ -42,8 +42,6 @@ namespace MyProject.Controllers
 
         public IActionResult Menu()
         {
-            //var prices = _priceRepository.GetAll();
-            //var dishes = _dishRepository.GetAll();
             var categories = _categoryRepository.GetAll();
             var modelCategories = _mapper.Map<List<CategoryViewModel>>(categories);
 
@@ -89,7 +87,6 @@ namespace MyProject.Controllers
         public IActionResult Basket()
         {
             var user = _userService.GetCurrent();
-            //?
             var model = new OrderViewModel()
             {
                 DishesInOrder = _mapper.Map<List<DishInOrderViewModel>>(user.Basket.Dishes),
@@ -120,7 +117,6 @@ namespace MyProject.Controllers
             var user = _userService.GetCurrent();
             user.OrderHistory.Add(order);
            
-            //basket
             foreach(var dish in user.Basket.Dishes)
             {
                 user.Basket.Dishes.Remove(dish);

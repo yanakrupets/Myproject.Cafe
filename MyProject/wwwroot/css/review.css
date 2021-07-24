@@ -42,6 +42,8 @@ textarea {
     width: 500px;
     word-wrap: break-word;
     font-family: system-ui;
+    display: flex;
+    justify-content: space-between;
 }
 
 .review-owner {
@@ -58,4 +60,8 @@ textarea {
 .owner_date {
     display: flex;
     margin: 15px 0px 0px;
+}
+
+.delete-review {
+    cursor: pointer;
 }
