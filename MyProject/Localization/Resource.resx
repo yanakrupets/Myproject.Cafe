@@ -144,6 +144,9 @@
   <data name="Basket_payment_method" xml:space="preserve">
     <value>Payment method</value>
   </data>
+  <data name="Basket_pickup" xml:space="preserve">
+    <value>Pickup</value>
+  </data>
   <data name="Form_exit" xml:space="preserve">
     <value>Exit</value>
   </data>

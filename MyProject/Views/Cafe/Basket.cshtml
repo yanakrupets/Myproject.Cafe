@@ -24,7 +24,7 @@
                 </div>
                 <div class="basket-dish">
                     <div class="basket-dish-name">@dish.Name</div>
-                    <div>@dish.Prise</div>
+                    <div class="basket-dish-name">@dish.Prise$</div>
                     @if (dish.Weight != 0)
                     {
                         <div>@dish.Weight</div>
@@ -65,7 +65,7 @@
 
                         <p>@Resource.Basket_payment_method:</p>
                         <div>
-                            <input type="radio" id="payment-method1"
+                            <input type="radio" id="payment-method1" checked
                                    name="@nameof(OrderViewModel.PaymentMethod)" value="@PaymentMethod.ByCardOnline">
                             <label for="payment-method1">@Resource.Basket_by_card_online</label>
                             <input type="radio" id="payment-method2"
@@ -78,12 +78,12 @@
 
                         <p>@Resource.Basket_delivery:</p>
                         <div>
-                            <input type="radio" id="delivery-yes"
-                                   name="@nameof(OrderViewModel.Delivery)" value="@true">
-                            <label for="delivery-yes">@Resource.Yes</label>
+                            <input type="radio" id="delivery-yes" checked
+                                   name="@nameof(OrderViewModel.Delivery)" value="@Delivery.Delivery">
+                            <label for="delivery-yes">@Resource.Basket_delivery</label>
                             <input type="radio" id="delivery-no"
-                                   name="@nameof(OrderViewModel.Delivery)" value="@false">
-                            <label for="delivery-no">@Resource.No</label>
+                                   name="@nameof(OrderViewModel.Delivery)" value="@Delivery.Pickup">
+                            <label for="delivery-no">@Resource.Basket_pickup</label>
                         </div>
                     </div>
 

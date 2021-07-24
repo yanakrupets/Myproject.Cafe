@@ -13,6 +13,6 @@ namespace MyProject.Models
         public string Card { get; set; }
         public string CustomerName { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
-        public bool Delivery { get; set; }
+        public Delivery Delivery { get; set; }
     }
 }

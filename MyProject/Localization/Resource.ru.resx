@@ -144,6 +144,9 @@
   <data name="Basket_payment_method" xml:space="preserve">
     <value>Способ оплаты</value>
   </data>
+  <data name="Basket_pickup" xml:space="preserve">
+    <value>Самовывоз</value>
+  </data>
   <data name="Error_message_length" xml:space="preserve">
     <value />
   </data>

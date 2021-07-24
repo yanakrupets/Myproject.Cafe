@@ -142,6 +142,15 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Pickup.
+        /// </summary>
+        public static string Basket_pickup {
+            get {
+                return ResourceManager.GetString("Basket_pickup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Exit.
         /// </summary>
         public static string Form_exit {

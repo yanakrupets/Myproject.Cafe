@@ -13,7 +13,7 @@ namespace MyProject.EfStuff.Model
         public bool isOrderPaid { get; set; }
         public double TotalPrice { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
-        public bool Delivery { get; set; }
+        public Delivery Delivery { get; set; }
         public virtual User User { get; set; }
         public virtual List<DishInOrder> DishesInOrder { get; set; }
     }
