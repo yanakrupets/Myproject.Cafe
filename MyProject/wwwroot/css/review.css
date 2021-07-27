@@ -40,7 +40,6 @@ textarea {
     padding: 15px 10px;
     background: gainsboro;
     width: 500px;
-    word-wrap: break-word;
     font-family: system-ui;
     display: flex;
     justify-content: space-between;
@@ -64,4 +63,9 @@ textarea {
 
 .delete-review {
     cursor: pointer;
+}
+
+.review-text {
+    width: 500px;
+    word-wrap: break-word;
 }

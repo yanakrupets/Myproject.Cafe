@@ -142,6 +142,9 @@ namespace MyProject.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Card")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
@@ -253,6 +256,9 @@ namespace MyProject.Migrations
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");

@@ -39,6 +39,17 @@ namespace MyProject.Service
 
             return path;
         }
+        public string GetPathToFoodFolder()
+        {
+            var webPath = _hostEnvironment.WebRootPath;
+            var path = Path.Combine(webPath, "images", "food");
+            if (Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            return path;
+        }
 
         public string GetPathToAvatarByUser(long id)
         {
@@ -46,9 +57,21 @@ namespace MyProject.Service
             return Path.Combine(avatarFolderPath, $"{id}.jpg");
         }
 
+        public string GetPathToFoodByDishId(long id)
+        {
+            var foodFolderPath = GetPathToFoodFolder();
+            return Path.Combine(foodFolderPath, $"{id}.jpg");
+        }
+
         public string GetAvatarUrlByUser(long id) 
         {
             return $"/images/avatars/{id}.jpg";
         }
+
+        public string GetDishUrlByDish(long id)
+        {
+            return $"/images/food/{id}.jpg";
+        }
+
     }
 }

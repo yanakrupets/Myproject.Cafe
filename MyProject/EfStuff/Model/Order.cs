@@ -14,6 +14,7 @@ namespace MyProject.EfStuff.Model
         public double TotalPrice { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public Delivery Delivery { get; set; }
+        public string Card { get; set; }
         public virtual User User { get; set; }
         public virtual List<DishInOrder> DishesInOrder { get; set; }
     }

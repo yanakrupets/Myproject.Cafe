@@ -11,5 +11,11 @@ namespace MyProject.EfStuff.Repositories
         public CategoryRepository(CafeDbContext cafeDbContext) : base(cafeDbContext)
         {
         }
+
+        public Category Get(string name)
+        {
+            return _dbSet.SingleOrDefault(x =>
+                x.Name.ToLower() == name.ToLower());
+        }
     }
 }

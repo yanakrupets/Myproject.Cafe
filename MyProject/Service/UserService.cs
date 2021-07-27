@@ -46,5 +46,11 @@ namespace MyProject.Service
             var principal = new ClaimsPrincipal(claimsIdentity);
             return principal;
         }
+
+        public bool IsAdmin()
+        {
+            var user = GetCurrent();
+            return user.Status == Status.Admin;
+        }
     }
 }

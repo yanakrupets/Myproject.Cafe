@@ -1,0 +1,30 @@
+﻿@model CategoriesViewModel
+
+@section Style
+{
+    <link rel="stylesheet" href="~/css/adminPage.css?v=2">
+}
+@section Script
+{
+    <script src="~/js/adminPage.js"></script>
+}
+
+
+<div class="admin-page">
+    <div class="admin-context">
+        <div class="possibilities">
+            <div class="possibility">Add dish</div>
+            <div class="possibility">Add category</div>
+            <div class="possibility">Add SO</div>
+            <div class="possibility">Edit</div>
+        </div>
+        <div class="editor">
+            <div>
+                @{
+                    var dishToAddModel = new DishToAddViewModel(Model.Categories);
+                }
+                @Html.Partial("_addDish", dishToAddModel)
+            </div>
+        </div>
+    </div>
+</div>

@@ -39,14 +39,18 @@
                                          {
                                              <div class="size">@nameof(PriceViewModel.Size): </div>
                                          }
+                                         @{ var numberSize = 1; }
                                          @foreach (var size in dish.Prices.Where(x => x.Size == x.Size))
                                          {
                                              if (size.Size != Size.NoSize)
                                              {
-                                                 <div class="dish-size size" value="@size.Size" name="@dish.Id">@size.Size</div>
+                                                 <div class="dish-size size" value="@size.Size" 
+                                                      name="@dish.Id" id="@numberSize">@size.Size</div>
+                                                 numberSize++;
                                              }
                                          }
                                      </div>
+                                     @{ var numberPrice = 1; }
                                      @foreach (var price in dish.Prices)
                                      {
                                          if (price.Weight != 0 && price.Size == Size.NoSize)
@@ -63,11 +67,14 @@
                                          }
                                          else
                                          {
-                                             <div class="weight hide" id="@price.Size" name="@dish.Id">
+                                             <div class="weight hide" id="@price.Size" name="@dish.Id"
+                                                  value="@numberPrice">
                                                  <div>@price.Weight</div>
                                                  <div>@price.Measure</div>
                                              </div>
-                                             <div class="price hide" id="@price.Size" name="@dish.Id">@price.Prise$</div>
+                                             <div class="price hide" id="@price.Size" name="@dish.Id"
+                                                  value="@numberPrice">@price.Prise$</div>
+                                             numberPrice++;
                                          }
                                      }
                                  </div>

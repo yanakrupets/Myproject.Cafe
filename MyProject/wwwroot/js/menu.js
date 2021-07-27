@@ -9,6 +9,10 @@
         $('.category-name').removeClass('not-active');
     })
 
+    $(`.dish-size[id=1]`).addClass('selected-size')
+        .closest('.size-price').find(`.price[value=1]`).removeClass('hide')
+        .closest('.size-price').find(`.weight[value=1]`).removeClass('hide');
+
     $('.dish-size').click(function () {
         var dishId = $(this).attr("name");
         $(`.dish-size[name='${dishId}']`).removeClass('selected-size');

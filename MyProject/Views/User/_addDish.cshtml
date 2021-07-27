@@ -1,0 +1,46 @@
+﻿@using MyProject.Localization
+@using MyProject.EfStuff.Model
+@using System.Text.Json;
+
+@model DishToAddViewModel
+
+@section Style
+{
+    <link rel="stylesheet" href="~/css/errorMessage.css">
+}
+
+<div class="">
+    <form action="/User/AddDish" enctype="multipart/form-data" method="post">
+        <div>
+            @Html.TextBoxFor(m => m.Name, new
+            {
+                placeholder = $"{nameof(Model.Name)}"
+            })
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.ImgUrl, new
+            {
+                type = "file",
+                accept = ".jpg, .jpeg, .png"
+            })
+        </div>
+        <div>
+            Category: @Html.DropDownListFor(m => m.Category, Model.CategoryOptions)
+        </div>
+        <div>Dish weight measure: @Html.DropDownListFor(m => m.Measure, Model.MeasureOptions)</div>
+        <div>
+            Size:
+            @foreach (var size in Enum.GetValues(typeof(Size)))
+            {
+                <div>
+                    <input type="checkbox" id="@size" name="@nameof(DishToAddViewModel.Sizes)"
+                           value="@size">
+                    <label for="@size">@size</label>
+                </div>
+                <div>Weight: @Html.TextBoxFor(m => m.Weights)</div>
+                <div>Price: @Html.TextBoxFor(m => m.Prices)</div>
+            }
+        </div>
+        <input type="submit" value="Create" />
+    </form>
+</div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyProject.Controllers.CustomAttribute;
 using MyProject.EfStuff.Model;
 using MyProject.EfStuff.Repositories;
 using MyProject.Models;
@@ -20,18 +21,26 @@ namespace MyProject.Controllers
     {
         private IUserRepository _userRepository;
         private IBasketRepository _basketRepository;
+        private ICategoryRepository _categoryRepository;
+        private IDishRepository _dishRepository;
+        private IPriceRepository _priceRepository;
         private IUserService _userService;
         private IMapper _mapper;
         private IPathHelper _pathHelper;
 
         public UserController(IUserRepository userRepository, IUserService userService,
-            IMapper mapper, IPathHelper pathHelper, IBasketRepository basketRepository)
+            IMapper mapper, IPathHelper pathHelper, IBasketRepository basketRepository,
+            ICategoryRepository categoryRepository, IDishRepository dishRepository,
+            IPriceRepository priceRepository)
         {
             _userRepository = userRepository;
             _userService = userService;
             _mapper = mapper;
             _pathHelper = pathHelper;
             _basketRepository = basketRepository;
+            _categoryRepository = categoryRepository;
+            _dishRepository = dishRepository;
+            _priceRepository = priceRepository;
         }
 
         [HttpGet]
@@ -180,6 +189,79 @@ namespace MyProject.Controllers
             _userRepository.Save(user);
 
             return RedirectToAction("Profile", "User");
+        }
+
+        [IsAdmin]
+        [Authorize]
+        public IActionResult AdminPage()
+        {
+            var categories = _categoryRepository.GetAll();
+            var modelCategories = _mapper.Map<List<CategoryViewModel>>(categories);
+
+            var model = new CategoriesViewModel()
+            {
+                Categories = modelCategories
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDish(DishToAddViewModel dishToAdd)
+        {
+            var dish = new Dish()
+            {
+                Name = dishToAdd.Name
+            };
+            _dishRepository.Save(dish);
+
+            if (dishToAdd.ImgUrl != null)
+            {
+                var path = _pathHelper.GetPathToFoodByDishId(dish.Id);
+                using (var fileStream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    await dishToAdd.ImgUrl.CopyToAsync(fileStream);
+                }
+                dish.ImageUrl = _pathHelper.GetDishUrlByDish(dish.Id);
+            }
+
+            var category = _categoryRepository.Get(dishToAdd.Category);
+            dish.Category = category;
+
+            var prices = new List<Price>();
+
+            if(dishToAdd.Sizes[0] == Size.NoSize)
+            {
+                var price = new Price()
+                {
+                    Size = Size.NoSize,
+                    Weight = Convert.ToUInt16(dishToAdd.Weights[0]),
+                    Measure = dishToAdd.Measure,
+                    Prise = dishToAdd.Prices[0]
+                };
+                _priceRepository.Save(price);
+                prices.Add(price);
+            }
+            else
+            {
+                for(var i = 0; i < dishToAdd.Sizes.Count; i++)
+                {
+                    var price = new Price()
+                    {
+                        Size = dishToAdd.Sizes[i],
+                        Weight = Convert.ToUInt16(dishToAdd.Weights[i]),
+                        Measure = dishToAdd.Measure,
+                        Prise = dishToAdd.Prices[i]
+                    };
+                    _priceRepository.Save(price);
+                    prices.Add(price);
+                }
+            }
+            
+            dish.Prices = prices;
+
+            _dishRepository.Save(dish);
+
+            return RedirectToAction("AdminPage");
         }
     }
 }

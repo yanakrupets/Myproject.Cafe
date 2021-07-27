@@ -4,5 +4,6 @@ namespace MyProject.EfStuff.Repositories
 {
     public interface ICategoryRepository : IBaseRepository<Category>
     {
+        Category Get(string name);
     }
 }

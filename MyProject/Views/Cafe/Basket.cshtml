@@ -1,12 +1,14 @@
 ﻿@using MyProject.Localization
 @using MyProject.Service
 @using MyProject.EfStuff.Model
+@using System.Text.Json;
 @inject IUserService userService
 @model OrderViewModel
 
 @section Style
 {
-    <link rel="stylesheet" href="~/css/basket.css?v=2">
+    <link rel="stylesheet" href="~/css/basket.css?v=5">
+    <link rel="stylesheet" href="~/css/errorMessage.css">
 }
 @section Script
 {
@@ -20,7 +22,7 @@
         {
             <div class="basket-dish-block">
                 <div class="basket-dish-img">
-                    <img src="@dish.ImageUrl"/>
+                    <img src="@dish.ImageUrl" />
                 </div>
                 <div class="basket-dish">
                     <div class="basket-dish-name">@dish.Name</div>
@@ -42,16 +44,32 @@
                         @{
                             var user = userService.GetCurrent();
                         }
+
                         @if (user.Card != null)
                         {
-                            <input name="@nameof(OrderViewModel.Card)" @*id="basket-card"*@ class="input-fields" type="text"
-                                   placeholder="@Resource.Basket_Card" value="@user.Card" />
+                            @Html.TextBox("Card", user.Card, new
+                            {
+                           name = $"{nameof(OrderViewModel.Card)}",
+                           id = "user-card",
+                           @class = "input-fields",
+                           type = "text",
+                           placeholder = $"{Resource.Basket_Card}"
+                        })
+                            @Html.ValidationMessage("Card")
                         }
                         else
                         {
-                            <input name="@nameof(OrderViewModel.Card)" @*id="basket-card"*@ class="input-fields" type="text"
-                                   placeholder="@Resource.Basket_Card" />
+                            @Html.TextBoxFor(m => m.Card, new
+                            {
+                           name = $"{nameof(OrderViewModel.Card)}",
+                           id = "user-card",
+                           @class = "input-fields",
+                           type = "text",
+                           placeholder = $"{Resource.Basket_Card}"
+                        })
+                            @Html.ValidationMessageFor(m => m.Card)
                         }
+
                         @if (user.Name != null)
                         {
                             <input name="@nameof(OrderViewModel.CustomerName)" @*id="basket-card"*@ class="input-fields" type="text"
@@ -87,7 +105,12 @@
                         </div>
                     </div>
 
-                    @Html.HiddenFor(model => model.DishesInOrder)
+                    @{
+                        Model.DishesIdsJson = JsonSerializer.Serialize(
+                            Model.DishesInOrder.Select(x => x.Id).ToList());
+                    }
+
+                    @Html.HiddenFor(model => model.DishesIdsJson)
                     @Html.HiddenFor(model => model.UserId)
                     <div class="basket-confirm">
                         <input class="pglogbut" type="submit" value="@Resource.Basket_confirm" />
@@ -95,10 +118,20 @@
                 </form>
             </div>
         </div>
-        <div class="basket-button">
-            <button class="pglogbut basket-pay">
-                @Resource.Basket_Pay
-            </button>
-        </div>
+        @{
+            if (Model.DishesInOrder.Count > 0)
+            {
+                <div class="basket-button">
+                    <button class="pglogbut basket-pay">
+                        @Resource.Basket_Pay
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="empty-basket">Your basket is empty</div>
+            }
+        }
+
     </div>
 </div>

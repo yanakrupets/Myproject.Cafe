@@ -66,12 +66,12 @@
                     <div class="review-message">
                         @if (review.Owner == userReview.Id)
                         {
-                            <div>@review.ReviewMessage</div>
+                            <div class="review-text">@review.ReviewMessage</div>
                             <div class="icon delete-review" name="@review.Id"></div>
                         }
                         else
                         {
-                            <div>@review.ReviewMessage</div>
+                            <div class="review-text">@review.ReviewMessage</div>
                         }
                     </div>
 

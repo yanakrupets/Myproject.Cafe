@@ -17,6 +17,7 @@ using MyProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MyProject
@@ -44,6 +45,7 @@ namespace MyProject
                     options.LoginPath = "/User/Login";
                 });
 
+            RegistrationPresentations(services);
             RegistrationMapper(services);
             RegistrationRepositories(services);
             RegistrationService(services);
@@ -51,6 +53,41 @@ namespace MyProject
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
         }
+
+        ////////////////////////////////
+        private void RegistrationPresentations(IServiceCollection services)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var types = assembly.GetTypes();
+            var PresentationTypes = types.Where(t => t.FullName.Contains("Presentation") && t.IsInterface).ToArray();
+
+            foreach (var iPresentation in PresentationTypes)
+            {
+                var realization = types.Single(x => x.GetInterfaces().Contains(iPresentation));
+                services.AddScoped(
+                    iPresentation,
+                    diContainer => ConstructorExecutor(realization, diContainer));
+            }
+        }
+
+        private object ConstructorExecutor(Type realization, IServiceProvider diContainer)
+        {
+            var constructor = realization.GetConstructors()[0];
+            var paramInfoes = constructor.GetParameters();
+
+            var paramValues = new object[paramInfoes.Length];
+            for (int i = 0; i < paramInfoes.Length; i++)
+            {
+                var paramInfo = paramInfoes[i];
+                var paramValue = diContainer.GetService(paramInfo.ParameterType);
+                paramValues[i] = paramValue;
+            }
+
+            var answer = constructor.Invoke(paramValues);
+            return answer;
+        }
+        ////////////////////////////////
+
 
         private void RegistrationService(IServiceCollection services)
         {
@@ -62,6 +99,11 @@ namespace MyProject
 
             services.AddScoped<IPathHelper>(diConteiner =>
             new PathHelper(
+                  diConteiner.GetService<IWebHostEnvironment>()
+                ));
+
+            services.AddScoped<IMenuService>(diConteiner =>
+            new MenuService(
                   diConteiner.GetService<IWebHostEnvironment>()
                 ));
         }

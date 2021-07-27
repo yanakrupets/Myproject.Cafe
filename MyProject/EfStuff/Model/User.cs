@@ -16,6 +16,7 @@ namespace MyProject.EfStuff.Model
         public Language Language { get; set; }
         public string AvatarUrl { get; set; }
         public string Card { get; set; }
+        public Status Status { get; set; }
         public virtual Basket Basket { get; set; }
         public virtual List<Order> OrderHistory { get; set; }
     }

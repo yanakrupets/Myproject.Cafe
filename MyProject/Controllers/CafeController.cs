@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using MyProject.EfStuff.Model;
 using MyProject.EfStuff.Repositories;
 using MyProject.Models;
+using MyProject.Presentation;
 using MyProject.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyProject.Controllers
 {
@@ -22,12 +25,15 @@ namespace MyProject.Controllers
         private IUserRepository _userRepository;
         private IBasketRepository _basketRepository;
         private IUserService _userService;
+        private IMenuService _menuService;
+        private ICafePresentation _cafePresentation;
         private IMapper _mapper;
 
         public CafeController(ICategoryRepository categoryRepository, IDishRepository dishRepository,
             IMapper mapper, IPriceRepository priceRepository, IUserService userService,
             IOrderRepository orderRepository, IUserRepository userRepository,
-            IBasketRepository basketRepository, IDishInOrderRepository dishInOrderRepository)
+            IBasketRepository basketRepository, IDishInOrderRepository dishInOrderRepository,
+            IMenuService menuService, ICafePresentation cafePresentation)
         {
             _categoryRepository = categoryRepository;
             _dishRepository = dishRepository;
@@ -38,6 +44,8 @@ namespace MyProject.Controllers
             _userRepository = userRepository;
             _basketRepository = basketRepository;
             _dishInOrderRepository = dishInOrderRepository;
+            _menuService = menuService;
+            _cafePresentation = cafePresentation;
         }
 
         public IActionResult Menu()
@@ -59,30 +67,12 @@ namespace MyProject.Controllers
 
         public IActionResult AddToBasket(string dishId, string dishSize)
         {
-            var id = (long)Convert.ToDouble(dishId);
-            var size = Size.NoSize;
-            if(dishSize != "undefined")
-            {
-                size = (Size)Enum.Parse(typeof(Size), dishSize);
-            }
-            var dish = _dishRepository.Get(id);
-            var dishInOrder = new DishInOrder()
-            {
-                Name = dish.Name,
-                ImageUrl = dish.ImageUrl,
-                Size = size,
-                Weight = dish.Prices.SingleOrDefault(x => x.Size == size).Weight,
-                Measure = dish.Prices.SingleOrDefault(x => x.Size == size).Measure,
-                Prise = dish.Prices.SingleOrDefault(x => x.Size == size).Prise
-            };
+            _cafePresentation.AddToBasket(dishId, dishSize);
 
-            var user = _userService.GetCurrent();
-            user.Basket.Dishes.Add(dishInOrder);
-            _userRepository.Save(user);
-            
             return Json(true);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Basket()
         {
@@ -101,14 +91,28 @@ namespace MyProject.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Basket(OrderViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Basket");
+            }
+
+            var dihesIds = JsonSerializer.Deserialize<List<long>>(model.DishesIdsJson);
+
             var order = _mapper.Map<Order>(model);
+            var dishesInOrder = new List<DishInOrder>();
+            for(var i = 0; i < dihesIds.Count; i++)
+            {
+                dishesInOrder.Add(_dishInOrderRepository.Get(dihesIds[i]));
+            }
+            order.DishesInOrder = dishesInOrder;
             order.OrderDate = DateTime.Now;
 
             double price = 0;
-            foreach(var dish in model.DishesInOrder)
+            foreach(var dish in order.DishesInOrder)
             {
                 price += dish.Prise;
             }
@@ -116,10 +120,12 @@ namespace MyProject.Controllers
 
             var user = _userService.GetCurrent();
             user.OrderHistory.Add(order);
-           
-            foreach(var dish in user.Basket.Dishes)
+
+            var count = user.Basket.Dishes.Count;
+            var j = 0;
+            for (var i = count - 1; j < count; i--, j++)
             {
-                user.Basket.Dishes.Remove(dish);
+                user.Basket.Dishes.Remove(user.Basket.Dishes[i]);
             }
             _userRepository.Save(user);
 
