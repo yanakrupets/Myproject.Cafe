@@ -1,1 +1,10 @@
-﻿
+﻿@model CategoryToAddViewModel
+
+<div>
+    <form action="/User/AddCategory" method="post">
+        <div>@Html.TextBoxFor(m => m.CategoryName)</div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+</div>

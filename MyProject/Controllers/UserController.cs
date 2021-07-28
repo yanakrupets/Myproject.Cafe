@@ -264,6 +264,13 @@ namespace MyProject.Controllers
             return RedirectToAction("AdminPage");
         }
 
-
+        [HttpPost]
+        public IActionResult AddCategory(CategoryToAddViewModel categoryModel)
+        {
+            var category = new Category();
+            category.Name = categoryModel.CategoryName;
+            _categoryRepository.Save(category);
+            return RedirectToAction("AdminPage");
+        }
     }
 }

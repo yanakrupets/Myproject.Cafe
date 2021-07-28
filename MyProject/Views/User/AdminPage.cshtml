@@ -13,17 +13,29 @@
 <div class="admin-page">
     <div class="admin-context">
         <div class="possibilities">
-            <div class="possibility">Add dish</div>
-            <div class="possibility">Add category</div>
-            <div class="possibility">Add SO</div>
-            <div class="possibility">Edit</div>
+            <div class="possibility add-dish">Add dish</div>
+            <div class="possibility add-category">Add category</div>
+            <div class="possibility add-so">Add SO</div>
+            <div class="possibility edit">Edit</div>
         </div>
         <div class="editor">
-            <div>
+            <div class="edit-page admin-add-dish">
                 @{
                     var dishToAddModel = new DishToAddViewModel(Model.Categories);
                 }
                 @Html.Partial("_addDish", dishToAddModel)
+            </div>
+            <div class="edit-page admin-add-category hide">
+                @{
+                    var categoryToAdd = new CategoryToAddViewModel();
+                }
+                @Html.Partial("_addCategory", categoryToAdd)
+            </div>
+            <div class="edit-page admin-add-so hide">
+                Add special offer
+            </div>
+            <div class="edit-page admin-edit hide">
+                Edit
             </div>
         </div>
     </div>
