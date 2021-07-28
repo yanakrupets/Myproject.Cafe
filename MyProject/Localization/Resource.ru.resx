@@ -183,6 +183,9 @@
   <data name="lang" xml:space="preserve">
     <value>ru</value>
   </data>
+  <data name="Layout_admin_page" xml:space="preserve">
+    <value>Страница админа</value>
+  </data>
   <data name="Layout_Basket" xml:space="preserve">
     <value>Корзина</value>
   </data>

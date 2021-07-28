@@ -259,6 +259,15 @@ namespace MyProject.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Admin page.
+        /// </summary>
+        public static string Layout_admin_page {
+            get {
+                return ResourceManager.GetString("Layout_admin_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Basket.
         /// </summary>
         public static string Layout_Basket {

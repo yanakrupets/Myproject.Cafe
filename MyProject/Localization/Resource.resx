@@ -183,6 +183,9 @@
   <data name="lang" xml:space="preserve">
     <value>en</value>
   </data>
+  <data name="Layout_admin_page" xml:space="preserve">
+    <value>Admin page</value>
+  </data>
   <data name="Layout_Basket" xml:space="preserve">
     <value>Basket</value>
   </data>

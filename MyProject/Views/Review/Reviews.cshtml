@@ -10,7 +10,7 @@
 
 @section Style
 {
-    <link rel="stylesheet" href="~/css/review.css?v=5">
+    <link rel="stylesheet" href="~/css/review.css?v=6">
 }
 @section Script
 {
@@ -64,17 +64,28 @@
                     </div>
 
                     <div class="review-message">
-                        @if (review.Owner == userReview.Id)
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="review-text">@review.ReviewMessage</div>
-                            <div class="icon delete-review" name="@review.Id"></div>
+                            @if (userReview.Status == Status.Admin)
+                            {
+                                <div class="review-text">@review.ReviewMessage</div>
+                                <div class="icon delete-review" name="@review.Id"></div>
+                            }
+                            else if (review.Owner == userReview.Id)
+                            {
+                                <div class="review-text">@review.ReviewMessage</div>
+                                <div class="icon delete-review" name="@review.Id"></div>
+                            }
+                            else
+                            {
+                                <div class="review-text">@review.ReviewMessage</div>
+                            }
                         }
                         else
                         {
                             <div class="review-text">@review.ReviewMessage</div>
                         }
                     </div>
-
                 }
             </div>
         </div>

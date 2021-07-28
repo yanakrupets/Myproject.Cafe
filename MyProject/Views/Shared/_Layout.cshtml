@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/css/carousel.css?v=1" />
     <link rel="stylesheet" href="~/css/reset.css" />
     <link rel="stylesheet" href="~/css/layout.css?v=8" />
-    <link rel="stylesheet" href="~/css/icon.css?v=8" />
+    <link rel="stylesheet" href="~/css/icon.css?v=9" />
     <link rel="stylesheet" href="~/css/link.css?v=2" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/masked-input/masked.input.js"></script>
@@ -59,6 +59,13 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
+                    var user = userService.GetCurrent();
+                    if (user.Status == Status.Admin)
+                    {
+                        <a href="/User/AdminPage" class="link">
+                            <div class="icon admin">@Resource.Layout_admin_page</div>
+                        </a>
+                    }
                     <a href="/Cafe/Basket" class="link">
                         <div class="icon basket">@Resource.Layout_Basket</div>
                     </a>

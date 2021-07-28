@@ -84,3 +84,11 @@
 .delete-review:hover::before {
     background: url('/images/icons/twotone_delete_black_36dp.png') center/cover;
 }
+
+.admin::before {
+    background: url('/images/icons/outline_admin_panel_settings_white_36dp.png') center/cover;
+}
+
+.admin:hover::before {
+    background: url('/images/icons/twotone_admin_panel_settings_white_36dp.png') center/cover;
+}
